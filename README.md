@@ -33,6 +33,7 @@
 - tslint / eslint rules
 - webpack
   - case sensitive plugin
+  - performance optimiziations
   
 ## Extras:
 - Localization

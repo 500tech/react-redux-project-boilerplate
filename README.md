@@ -15,6 +15,7 @@
     - Example Constants
   - Components
     - Example Component
+    - use renderXXX
   - Redux (see later)
   - Utils
     - Example Utils

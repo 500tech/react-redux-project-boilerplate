@@ -1,0 +1,52 @@
+{
+  "name": "test-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts":
+      "/Users/adamklein/projects/create-react-app/packages/react-scripts/react-scripts-1.1.0.tgz",
+    "history": "4.7.2",
+    "lodash": "4.17.5",
+    "moment": "2.20.1",
+    "react-intl": "2.4.0",
+    "react-redux": "5.0.6",
+    "react-router": "4.2.0",
+    "react-router-dom": "4.2.2",
+    "redux": "3.7.2",
+    "redux-actions": "2.2.1",
+    "redux-freeze": "0.1.5",
+    "redux-logger": "3.0.6",
+    "reselect": "3.0.1",
+    "styled-components": "3.1.6",
+    "superagent": "3.8.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "precommit": "lint-staged",
+    "postcommit": "git reset",
+    "flow": "flow"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": true,
+    "requirePragma": false
+  },
+  "lint-staged": {
+    "*.js": ["./node_modules/.bin/prettier --write", "git add"]
+  },
+  "devDependencies": {
+    "flow-bin": "0.65.0",
+    "husky": "0.14.3"
+  }
+}

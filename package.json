@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts":
-      "/Users/adamklein/projects/create-react-app/packages/react-scripts/react-scripts-1.1.0.tgz",
+    "@500tech/react-scripts": "^1",
     "history": "4.7.2",
     "lodash": "4.17.5",
     "moment": "2.20.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-intl": "2.4.0",
     "react-redux": "5.0.6",
     "react-router": "4.2.0",
@@ -43,7 +42,10 @@
     "requirePragma": false
   },
   "lint-staged": {
-    "*.js": ["./node_modules/.bin/prettier --write", "git add"]
+    "*.js": [
+      "./node_modules/.bin/prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "flow-bin": "0.65.0",

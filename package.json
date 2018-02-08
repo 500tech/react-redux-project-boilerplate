@@ -42,10 +42,7 @@
     "requirePragma": false
   },
   "lint-staged": {
-    "*.js": [
-      "./node_modules/.bin/prettier --write",
-      "git add"
-    ]
+    "*.js": ["./node_modules/.bin/prettier --write", "git add"]
   },
   "devDependencies": {
     "flow-bin": "0.65.0",

@@ -3204,7 +3204,7 @@ he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
-history@4.7.2, history@^4.7.2:
+history@4.7.2, history@^4.6.3, history@^4.7.2:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
   dependencies:
@@ -5779,6 +5779,13 @@ react-intl@2.4.0:
     intl-messageformat "^2.1.0"
     intl-relativeformat "^2.0.0"
     invariant "^2.1.1"
+
+react-redux-router@0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-redux-router/-/react-redux-router-0.0.14.tgz#1a8583b9dd211018409f1f8d5a79584be52d024e"
+  dependencies:
+    history "^4.6.3"
+    path-to-regexp "^1.7.0"
 
 react-redux@5.0.6:
   version "5.0.6"

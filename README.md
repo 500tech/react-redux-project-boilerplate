@@ -1,15 +1,23 @@
+## How to use
+
+```
+$ git clone git@bitbucket.org:500tech/react-redux-project-boilerplate.git
+$ git remote set-url origin <the-specific-repo-git-url>
+$ yarn start  
+```
+
 ## TODO
 
-* readme
-* react-redux-router
-* Post CSS
-* Go over repo
+* react-redux-router (when it's ready)
 * Debug menu
 * Locale switcher
-* redux-freeze
-* remove // @flow
 * try to use redux types
-* fix redux types - state & state....
+* Test infrastructure
+  * JEST
+* tslint / eslint rules
+* case sensitive plugin
+* performance optimiziations
+* IDE predefinitions
 
 # react-redux-project-boilerplate
 
@@ -17,58 +25,14 @@
 
 # Decisions
 
-* TS vs. Flow
-  * Nir: TS is more mature (2018)
-  * Ilya: Flow has less friction
-* Prettier
-  * Nir says: Extra configuration. Use IDE auto format instead based on the project TSlint
-    * Ilya replies: Prettier actually requires very little configuration. Since not everyone uses WebStorm/VS Code it is challenging to use the same code conventions.
 * Lint rules
   * Nir suggested: - TSlint language defaults + Modified AirBNB
 * API Middleware
 * Liron suggested: API Middleware (that handles both HTTP and WebSockets)
-* Thunk
-
-# Suggestions
-
-* Based on create react-app
-* Folders
-  * Constants
-    * Example Constants
-  * Components
-    * Example Component
-    * use renderXXX
-  * Redux (see later)
-  * Utils
-    * Example Utils
-  * Assets
-* Redux
-  * Folders (reducers, actions, middlewares, selector)
-  * Using lodash/fp
-  * Example for each type of unit
-  * addons
-    * redux-freeze (in dev)
-    * redux-actions
-* Prettier + NPM scripts
-* Test infrastructure
-  * JEST
-* babelrc
-* tslint / eslint rules
-* Liron suggested: styled-components
-* webpack
-
-  * case sensitive plugin
-  * performance optimiziations
-
-## Extras:
-
-* Localization
-* Aran suggested: Git Hooks (Husky)
-  * Ilya suggested: incorportate fht-style
 
 # Contributing
 
-Edit README.
+Make a Pull Request
 
 Nir: ## General Conventions (Suggestions)
 

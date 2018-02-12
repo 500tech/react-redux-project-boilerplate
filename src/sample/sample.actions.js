@@ -1,7 +1,6 @@
 // @flow
-// TODO: remove this file
 import { fetchPostsUrl } from '../constants/api.constants';
-import type { Posts } from 'types/sample.types';
+import type { Posts } from './sample.types';
 import type {
   ActionCreator,
   ApiActionCreator,
@@ -11,6 +10,9 @@ import type {
 export const FETCH_POSTS = '[posts] Fetch Posts';
 export const SET_POSTS = '[posts] Set Posts';
 
+/* 
+* Sample API action
+*/
 export const fetchPosts: ApiActionCreator = () => ({
   type: FETCH_POSTS,
   payload: {

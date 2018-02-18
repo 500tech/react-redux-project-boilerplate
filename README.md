@@ -19,6 +19,7 @@ $ yarn start
 * performance optimiziations
 * IDE predefinitions
 * Snippets (like https://medium.com/@stinaqv/visual-studio-code-snippet-for-creating-a-functional-stateless-component-with-flow-db147aa1ef0b)
+* Flow linting rules (missing @flow)
 
 # react-redux-project-boilerplate
 

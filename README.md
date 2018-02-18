@@ -18,6 +18,7 @@ $ yarn start
 * case sensitive plugin
 * performance optimiziations
 * IDE predefinitions
+* Snippets (like https://medium.com/@stinaqv/visual-studio-code-snippet-for-creating-a-functional-stateless-component-with-flow-db147aa1ef0b)
 
 # react-redux-project-boilerplate
 

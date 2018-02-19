@@ -3,14 +3,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash/fp';
 import styled from 'styled-components';
-import { fetchPosts } from './sample.actions';
+import { fetchPosts } from 'sample/sample.actions';
 import { isLoadingSelector } from 'selectors/network.selectors';
 import type { State } from 'types/redux.types';
 import type { SampleState } from 'sample/sample.reducer';
 import type { MapStateToProps } from 'react-redux';
-import type { PostsMap } from './sample.types';
+import type { PostsMap } from 'sample/sample.types';
 
-import './sample-replace-reducer';
+import 'sample/sample-replace-reducer';
 
 /*
 * This is done to avoid contaminating the original code with the sample reducer's code

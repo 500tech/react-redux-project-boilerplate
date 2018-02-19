@@ -3,9 +3,9 @@ import { get, set, keyBy } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
 import type { Action } from 'types/redux.types';
-import type { PostsMap } from './sample.types';
+import type { PostsMap } from 'sample/sample.types';
 
-import * as AT from './sample.actions';
+import * as AT from 'sample/sample.actions';
 
 export type SampleState = {|
   posts: PostsMap

@@ -9,17 +9,17 @@ $ yarn start
 ## TODO
 
 * react-redux-router (when it's ready)
-* Debug menu
 * Locale switcher
 * try to use redux types
 * Test infrastructure
   * JEST
 * tslint / eslint rules
 * case sensitive plugin
-* performance optimiziations
+* performance optimizations
 * IDE predefinitions
 * Snippets (like https://medium.com/@stinaqv/visual-studio-code-snippet-for-creating-a-functional-stateless-component-with-flow-db147aa1ef0b)
 * Flow linting rules (missing @flow)
+* Kebab Plugin
 
 # react-redux-project-boilerplate
 

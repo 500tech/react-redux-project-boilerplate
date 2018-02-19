@@ -1,4 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
+import { RESTORE_LOCAL_STORAGE_KEY } from 'constants/restore.constants';
 
 import rootReducer from 'reducers/root.reducer';
 import apiMiddleware from 'middlewares/api.middleware';
@@ -14,8 +15,11 @@ if (isDev) {
   middlewares.push(require('redux-freeze'));
 }
 
+const savedState = localStorage.getItem(RESTORE_LOCAL_STORAGE_KEY);
+
 const store = createStore(
   rootReducer,
+  ...(savedState && isDev ? [JSON.parse(savedState)] : []),
   composeEnhancers(applyMiddleware(...middlewares))
 );
 

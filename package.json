@@ -7,6 +7,7 @@
     "history": "4.7.2",
     "lodash": "4.17.5",
     "moment": "2.20.1",
+    "onchange": "3.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-intl": "2.4.0",
@@ -26,6 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "prettier:all": "prettier --write 'src/**/*.js'",
+    "prettier:watch": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
     "precommit": "lint-staged",
     "postcommit": "git reset",
     "flow": "flow"
@@ -42,7 +45,10 @@
     "requirePragma": false
   },
   "lint-staged": {
-    "*.js": ["./node_modules/.bin/prettier --write", "git add"]
+    "*.js": [
+      "./node_modules/.bin/prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "flow-bin": "0.65.0",

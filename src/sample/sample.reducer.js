@@ -1,12 +1,11 @@
 // @flow
-// TODO: remove this file
 import { get, set, keyBy } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
 import type { Action } from 'types/redux.types';
-import type { PostsMap } from 'types/sample.types';
+import type { PostsMap } from 'sample/sample.types';
 
-import * as AT from 'actions/sample.actions';
+import * as AT from 'sample/sample.actions';
 
 export type SampleState = {|
   posts: PostsMap

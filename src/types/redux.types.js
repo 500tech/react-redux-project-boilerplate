@@ -1,7 +1,6 @@
 // @flow
 import type { LocalizationState } from 'reducers/localization.reducer';
 import type { NetworkState } from 'reducers/network.reducer';
-import type { SampleState } from 'reducers/sample.reducer'; // TODO: remove this line
 
 export type Action = {|
   type: string,
@@ -45,6 +44,5 @@ export type Middleware = (
 
 export type State = {
   localization: LocalizationState,
-  network: NetworkState,
-  sample: SampleState // TODO: remove this line
+  network: NetworkState
 };

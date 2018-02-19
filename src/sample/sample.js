@@ -1,14 +1,25 @@
 // @flow
-// TODO: remove this file
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash/fp';
 import styled from 'styled-components';
-import { fetchPosts } from 'actions/sample.actions';
+import { fetchPosts } from 'sample/sample.actions';
 import { isLoadingSelector } from 'selectors/network.selectors';
 import type { State } from 'types/redux.types';
+import type { SampleState } from 'sample/sample.reducer';
 import type { MapStateToProps } from 'react-redux';
-import type { PostsMap } from 'types/sample.types';
+import type { PostsMap } from 'sample/sample.types';
+
+import 'sample/sample-replace-reducer';
+
+/*
+* This is done to avoid contaminating the original code with the sample reducer's code
+* Do not use this pattern normally
+*/
+
+type StateWithSample = State & {
+  sample: SampleState
+};
 
 type ConnectedProps = {
   posts: PostsMap,
@@ -18,7 +29,10 @@ type ConnectedProps = {
 
 type OwnProps = {};
 
-class Home extends React.Component<ConnectedProps & OwnProps> {
+/* 
+* Sample component pulling data from server on mount
+*/
+class Sample extends React.Component<ConnectedProps & OwnProps> {
   componentDidMount() {
     this.refresh();
   }
@@ -83,8 +97,8 @@ const StyledPost = styled.div`
   margin: 10px;
 `;
 
-const mapStateToProps: MapStateToProps<State, OwnProps, {}> = (
-  state: State
+const mapStateToProps: MapStateToProps<StateWithSample, OwnProps, {}> = (
+  state: StateWithSample
 ) => ({
   posts: state.sample.posts,
   isLoading: isLoadingSelector(state, 'posts')
@@ -92,4 +106,4 @@ const mapStateToProps: MapStateToProps<State, OwnProps, {}> = (
 
 export default connect(mapStateToProps, {
   fetchPosts
-})(Home);
+})(Sample);

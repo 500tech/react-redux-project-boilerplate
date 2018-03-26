@@ -18,9 +18,9 @@ import Sample from 'sample/sample'; // TODO: replace this with actual component
 import Loading from 'sample/loading';
 
 // TODO: remove if no need for Lazy load routes:
-const lazyLoad = componentPath =>
+const lazyLoad = loader =>
   Loadable({
-    loader: () => import(componentPath),
+    loader,
     loading: () => <Loading showLoading={true} />
   });
 
@@ -36,7 +36,7 @@ class App extends React.Component<{||}> {
                 <Route
                   path="/lazy"
                   name="lazy"
-                  component={lazyLoad('sample/lazy')}
+                  component={lazyLoad(() => import('sample/lazy'))}
                 />
               </Layout>
             </Router>

@@ -13,6 +13,15 @@ import Localization from 'components/localization'; // TODO: remove if no locali
 import Layout from 'components/layout/layout';
 
 import Sample from 'sample/sample'; // TODO: replace this with actual component
+import Loading from 'sample/loading';
+
+// TODO: remove if no need for Lazy load routes:
+import Loadable from 'react-loadable';
+
+const LazyLoadedComponent = Loadable({
+  loader: () => import('sample/lazy'),
+  loading: () => <Loading showLoading={true} />
+});
 
 class App extends React.Component<{||}> {
   render() {
@@ -22,7 +31,12 @@ class App extends React.Component<{||}> {
           <ThemeProvider theme={themes.main}>
             <Router history={history}>
               <Layout>
-                <Route path="/" name="sample" component={Sample} />
+                <Route exact path="/" name="sample" component={Sample} />
+                <Route
+                  path="/lazy"
+                  name="lazy"
+                  component={LazyLoadedComponent}
+                />
               </Layout>
             </Router>
           </ThemeProvider>

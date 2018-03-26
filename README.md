@@ -10,13 +10,13 @@ $ yarn start
 
 * react-redux-router (when it's ready)
 * Locale switcher
-* try to use redux types
+* Try to use redux types
 * Test infrastructure
   * JEST
 * tslint / eslint rules
 * case sensitive plugin
 * performance optimizations
-* IDE predefinitions
+* Add IDE predefinitions or examples for IDE configs (prettier, flow)
 * Snippets (like https://medium.com/@stinaqv/visual-studio-code-snippet-for-creating-a-functional-stateless-component-with-flow-db147aa1ef0b)
 * Flow linting rules (missing @flow)
 * Kebab Plugin

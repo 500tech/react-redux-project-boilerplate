@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { forEach } from 'lodash';
+import forEach from 'lodash/forEach';
 import { connect } from 'react-redux';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import moment from 'moment';

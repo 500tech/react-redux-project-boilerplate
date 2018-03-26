@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import StateRestorer from 'components/debug/stateRestorer';
+import StateRestorer from 'components/debug/state-restorer';
 
 type Props = {
   children: React.Node

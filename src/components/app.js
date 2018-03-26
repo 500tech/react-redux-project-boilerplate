@@ -6,6 +6,9 @@ import { Route } from 'react-router';
 import { Provider } from 'react-redux';
 
 import history from 'utils/history.utils';
+// TODO: remove if no need for Lazy load routes:
+import lazyLoad from 'utils/lazy-load.utils';
+
 import store from 'store';
 import * as themes from 'constants/themes.constants';
 
@@ -22,7 +25,12 @@ class App extends React.Component<{||}> {
           <ThemeProvider theme={themes.main}>
             <Router history={history}>
               <Layout>
-                <Route path="/" name="sample" component={Sample} />
+                <Route exact path="/" name="sample" component={Sample} />
+                <Route
+                  path="/lazy"
+                  name="lazy"
+                  component={lazyLoad(() => import('sample/lazy'))}
+                />
               </Layout>
             </Router>
           </ThemeProvider>

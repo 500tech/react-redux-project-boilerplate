@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { Router } from 'react-router-dom';
 import { Route } from 'react-router';
 import { Provider } from 'react-redux';
+// TODO: remove if no need for Lazy load routes:
+import Loadable from 'react-loadable';
 
 import history from 'utils/history.utils';
 import store from 'store';
@@ -16,12 +18,11 @@ import Sample from 'sample/sample'; // TODO: replace this with actual component
 import Loading from 'sample/loading';
 
 // TODO: remove if no need for Lazy load routes:
-import Loadable from 'react-loadable';
-
-const LazyLoadedComponent = Loadable({
-  loader: () => import('sample/lazy'),
-  loading: () => <Loading showLoading={true} />
-});
+const lazyLoad = componentPath =>
+  Loadable({
+    loader: () => import(componentPath),
+    loading: () => <Loading showLoading={true} />
+  });
 
 class App extends React.Component<{||}> {
   render() {
@@ -35,7 +36,7 @@ class App extends React.Component<{||}> {
                 <Route
                   path="/lazy"
                   name="lazy"
-                  component={LazyLoadedComponent}
+                  component={lazyLoad('sample/lazy')}
                 />
               </Layout>
             </Router>

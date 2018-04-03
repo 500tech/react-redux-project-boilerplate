@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Actions: network endNetwork 1`] = `
+Object {
+  "payload": Object {
+    "label": "posts",
+  },
+  "type": "[network] End",
+}
+`;
+
+exports[`Actions: network startNetwork 1`] = `
+Object {
+  "payload": Object {
+    "label": "posts",
+  },
+  "type": "[network] Start",
+}
+`;

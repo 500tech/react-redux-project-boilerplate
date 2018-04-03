@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Localization /> should render 1`] = `
+<IntlProvider
+  key="en-US"
+  locale="en-US"
+  messages={
+    Object {
+      "homepage.title": "Hello World",
+    }
+  }
+>
+  <div>
+    Hello world
+  </div>
+</IntlProvider>
+`;

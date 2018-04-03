@@ -26,7 +26,7 @@ export const fetchPosts: ApiActionCreator = () => ({
   }
 });
 
-const setPosts: ActionCreator = (posts: Posts) => ({
+export const setPosts: ActionCreator = (posts: Posts) => ({
   type: SET_POSTS,
   payload: {
     posts

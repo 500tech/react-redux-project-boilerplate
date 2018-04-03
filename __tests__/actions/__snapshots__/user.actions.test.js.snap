@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Actions: user setUserToken 1`] = `
+Object {
+  "payload": Object {
+    "token": "token",
+  },
+  "type": "[user] Set Token",
+}
+`;

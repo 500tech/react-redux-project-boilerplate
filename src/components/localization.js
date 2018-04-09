@@ -33,7 +33,10 @@ type OwnProps = {
   children: React.Node
 };
 
-const Localization = ({ locale, children }: ConnectedProps & OwnProps) => (
+export const Localization = ({
+  locale,
+  children
+}: ConnectedProps & OwnProps) => (
   <IntlProvider
     locale={locale}
     key={locale}

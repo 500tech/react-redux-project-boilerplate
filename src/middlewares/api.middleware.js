@@ -23,9 +23,11 @@ const apiMiddleware: Middleware = ({
   //   headers['auth'] = getState().user.token;
   // }
 
+  next(action);
+
   dispatch(startNetwork(label));
 
-  apiUtils
+  return apiUtils
     .request({ method, url, data, headers })
     .then(({ body }) => {
       dispatch(endNetwork(label));
@@ -43,8 +45,6 @@ const apiMiddleware: Middleware = ({
 
       if (onError) onError(error, dispatch);
     });
-
-  return next(action);
 };
 
 export default apiMiddleware;

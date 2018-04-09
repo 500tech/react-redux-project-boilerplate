@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Actions: localization setLocale 1`] = `
+Object {
+  "payload": Object {
+    "locale": "en-US",
+  },
+  "type": "[localization] Set Locale",
+}
+`;

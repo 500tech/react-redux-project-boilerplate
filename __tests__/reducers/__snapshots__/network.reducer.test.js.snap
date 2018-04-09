@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reducer: Network endNetwork: should remove finished request 1`] = `
+Object {
+  "posts": 0,
+}
+`;
+
+exports[`Reducer: Network startNetwork: should save pending request 1`] = `
+Object {
+  "posts": 1,
+}
+`;

@@ -32,7 +32,7 @@ type OwnProps = {};
 /* 
 * Sample component pulling data from server on mount
 */
-class Sample extends React.Component<ConnectedProps & OwnProps> {
+export class Sample extends React.Component<ConnectedProps & OwnProps> {
   componentDidMount() {
     this.refresh();
   }
@@ -86,7 +86,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-const StyledPost = styled.div`
+export const StyledPost = styled.div`
   display: inline-block;
   padding: 15px;
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);

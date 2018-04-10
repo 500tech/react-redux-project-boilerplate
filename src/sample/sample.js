@@ -3,6 +3,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash/fp';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
+
 import { fetchPosts } from 'sample/sample.actions';
 import { isLoadingSelector } from 'selectors/network.selectors';
 import type { State } from 'types/redux.types';
@@ -59,7 +61,9 @@ export class Sample extends React.Component<ConnectedProps & OwnProps> {
 
     return (
       <StyledContainer>
-        <h1>Welcome to the 500Tech boilerplate</h1>
+        <h1>
+          <FormattedMessage id="homepage.title" />
+        </h1>
         <h3>
           To get started, search your project for // TODO<br />
           This is a sample component that uses a sample action + reducer, it

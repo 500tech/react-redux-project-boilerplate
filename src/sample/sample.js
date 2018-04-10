@@ -106,7 +106,7 @@ const mapStateToProps: MapStateToProps<StateWithSample, OwnProps, {}> = (
   state: StateWithSample
 ) => ({
   posts: state.sample.posts,
-  isLoading: isLoadingSelector(state, 'posts')
+  isLoading: isLoadingSelector(state, sampleActions.POSTS_LABEL)
 });
 
 export default connect(mapStateToProps, {

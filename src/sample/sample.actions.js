@@ -17,7 +17,7 @@ export const SET_POSTS = '[posts] Set Posts';
 export const fetchPosts: ApiActionCreator = () => ({
   type: FETCH_POSTS,
   payload: {
-    label: 'posts',
+    networkLabel: 'posts',
     method: 'GET',
     url: fetchPostsUrl(),
     onSuccess: (posts, dispatch: Dispatch) => dispatch(setPosts(posts))

@@ -13,8 +13,8 @@ export type Action = {|
 export type ApiAction = {|
   type: string,
   payload?: {
-    label?: string,
-    method?: string,
+    networkLabel?: string,
+    method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS',
     data?: {},
     url?: string,
     onSuccess?: (data: any, dispatch: Dispatch) => void,

@@ -16,7 +16,7 @@ const apiMiddleware: Middleware = ({
   }
   const { payload } = action;
   const { url, onSuccess, onError } = payload || {};
-  const { label, data, method = 'GET' } = payload || {};
+  const { networkLabel, data, method = 'GET' } = payload || {};
   const headers = {};
   // TODO: if using token authentication
   // if (getState().user.token) {
@@ -25,19 +25,19 @@ const apiMiddleware: Middleware = ({
 
   next(action);
 
-  dispatch(startNetwork(label));
+  dispatch(startNetwork(networkLabel));
 
   return apiUtils
     .request({ method, url, data, headers })
     .then(({ body }) => {
-      dispatch(endNetwork(label));
+      dispatch(endNetwork(networkLabel));
 
       if (onSuccess) onSuccess(body, dispatch);
     })
     .catch(error => {
       console.error('API error', error, action);
 
-      dispatch(endNetwork(label));
+      dispatch(endNetwork(networkLabel));
 
       if (get('response.status', error) === 401) {
         // TODO: handle 401

@@ -5,13 +5,13 @@ import { values } from 'lodash/fp';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 
-import { fetchPosts } from 'sample/sample.actions';
+import * as sampleActions from 'sample/sample.actions';
 import { isLoadingSelector } from 'selectors/network.selectors';
 
 import type { State } from 'types/redux.types';
 import type { SampleState } from 'sample/sample.reducer';
 import type { MapStateToProps } from 'react-redux';
-import type { PostsMap } from 'sample/sample.types';
+import type { PostsMap, Post } from 'sample/sample.types';
 
 import 'sample/sample-replace-reducer';
 
@@ -44,7 +44,7 @@ export class Sample extends React.Component<ConnectedProps & OwnProps> {
     this.props.fetchPosts();
   };
 
-  renderPost = post => (
+  renderPost = (post: Post) => (
     <StyledPost key={post.id}>
       <h4>{post.title}</h4>
       <p>{post.body}</p>
@@ -110,5 +110,5 @@ const mapStateToProps: MapStateToProps<StateWithSample, OwnProps, {}> = (
 });
 
 export default connect(mapStateToProps, {
-  fetchPosts
+  fetchPosts: sampleActions.fetchPosts
 })(Sample);

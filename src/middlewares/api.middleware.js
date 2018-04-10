@@ -39,9 +39,9 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
     return apiUtils
       .request({ method, url: requestUrl, data, headers })
       .then(({ body }) => {
-        dispatch(endNetwork(networkLabel));
-
         if (onSuccess) dispatchActions(onSuccess(body));
+
+        dispatch(endNetwork(networkLabel));
       })
       .catch(error => {
         console.error('API error', error, action);

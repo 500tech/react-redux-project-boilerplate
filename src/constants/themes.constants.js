@@ -1,4 +1,6 @@
 // @flow
-export const main = {
+const theme = {
   white: '#FFF'
 };
+
+export default theme;

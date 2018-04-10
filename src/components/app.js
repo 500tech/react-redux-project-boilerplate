@@ -10,7 +10,7 @@ import history from 'utils/history.utils';
 import lazyLoad from 'utils/lazy-load.utils';
 
 import store from 'store';
-import * as themes from 'constants/themes.constants';
+import theme from 'constants/themes.constants';
 
 import Localization from 'components/localization'; // TODO: remove if no localization
 import Layout from 'components/layout/layout';
@@ -22,7 +22,7 @@ class App extends React.Component<{||}> {
     return (
       <Provider store={store}>
         <Localization>
-          <ThemeProvider theme={themes.main}>
+          <ThemeProvider theme={theme}>
             <Router history={history}>
               <Layout>
                 <Route exact path="/" name="sample" component={Sample} />

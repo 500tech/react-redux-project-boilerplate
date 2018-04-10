@@ -1,5 +1,6 @@
 // @flow
 import { fetchPostsUrl } from 'constants/api.constants';
+
 import type { Posts } from 'sample/sample.types';
 import type {
   ActionCreator,

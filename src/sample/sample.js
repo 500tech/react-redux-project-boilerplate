@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { fetchPosts } from 'sample/sample.actions';
 import { isLoadingSelector } from 'selectors/network.selectors';
+
 import type { State } from 'types/redux.types';
 import type { SampleState } from 'sample/sample.reducer';
 import type { MapStateToProps } from 'react-redux';

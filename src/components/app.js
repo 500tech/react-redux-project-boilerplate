@@ -14,7 +14,6 @@ import theme from 'constants/themes.constants';
 
 import Localization from 'components/localization'; // TODO: remove if no localization
 import Layout from 'components/layout/layout';
-
 import Sample from 'sample/sample'; // TODO: replace this with actual component
 
 class App extends React.Component<{||}> {

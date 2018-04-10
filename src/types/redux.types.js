@@ -17,8 +17,8 @@ export type ApiAction = {|
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS',
     data?: {},
     url?: string,
-    onSuccess?: (data: any, dispatch: Dispatch) => void,
-    onError?: (error: any, dispatch: Dispatch) => void
+    onSuccess?: (data: any) => Action | Action[],
+    onError?: (error: any) => Action | Action[]
   },
   meta?: {
     api: boolean

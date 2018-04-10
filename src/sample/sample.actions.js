@@ -2,11 +2,7 @@
 import { fetchPostsUrl } from 'constants/api.constants';
 
 import type { Posts } from 'sample/sample.types';
-import type {
-  ActionCreator,
-  ApiActionCreator,
-  Dispatch
-} from 'types/redux.types';
+import type { ActionCreator, ApiActionCreator } from 'types/redux.types';
 
 export const FETCH_POSTS = '[posts] Fetch Posts';
 export const SET_POSTS = '[posts] Set Posts';
@@ -22,7 +18,7 @@ export const fetchPosts: ApiActionCreator = () => ({
     networkLabel: POSTS_LABEL,
     method: 'GET',
     url: fetchPostsUrl(),
-    onSuccess: (posts, dispatch: Dispatch) => dispatch(setPosts(posts))
+    onSuccess: setPosts
   },
   meta: {
     api: true

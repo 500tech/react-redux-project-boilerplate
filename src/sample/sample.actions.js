@@ -11,13 +11,15 @@ import type {
 export const FETCH_POSTS = '[posts] Fetch Posts';
 export const SET_POSTS = '[posts] Set Posts';
 
+export const POSTS_LABEL = 'posts';
+
 /* 
 * Sample API action
 */
 export const fetchPosts: ApiActionCreator = () => ({
   type: FETCH_POSTS,
   payload: {
-    networkLabel: 'posts',
+    networkLabel: POSTS_LABEL,
     method: 'GET',
     url: fetchPostsUrl(),
     onSuccess: (posts, dispatch: Dispatch) => dispatch(setPosts(posts))

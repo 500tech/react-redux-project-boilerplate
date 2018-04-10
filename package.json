@@ -64,7 +64,8 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "flow-bin": "0.65.0",
     "husky": "0.14.3",
-    "onchange": "3.3.0",
-    "jest-enzyme": "^6.0.0"
+    "jest-enzyme": "^6.0.0",
+    "mimic": "2.0.2",
+    "onchange": "3.3.0"
   }
 }

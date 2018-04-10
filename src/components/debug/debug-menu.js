@@ -20,10 +20,6 @@ const DebugMenuWrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
   color: black;
-  opacity: 0.1;
-  &:hover {
-    opacity: 0.9;
-  }
 `;
 
 const newNode = document.createElement('div');

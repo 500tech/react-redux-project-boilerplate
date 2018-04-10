@@ -1,11 +1,17 @@
 // @flow
 import { get, castArray, compact } from 'lodash/fp';
+import urljoin from 'url-join';
 
 import apiUtils from 'utils/api.utils';
 import { startNetwork, endNetwork } from 'actions/network.actions';
 
 import type { Middleware } from 'types/redux.types';
 // import type { Middleware } from 'redux'; doesn't work?
+
+declare var process: any;
+
+// TODO: replace in .env.X to correct URL
+export const BASE_URL: string = process.env.REACT_APP_BASE_URL;
 
 const apiMiddleware: Middleware = ({ dispatch, getState }) => {
   const dispatchActions = actions => {
@@ -17,9 +23,10 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
       return next(action);
     }
     const { payload } = action;
-    const { url, onSuccess, onError } = payload || {};
+    const { path, url, onSuccess, onError } = payload || {};
     const { networkLabel, data, method = 'GET' } = payload || {};
     const headers = {};
+    const requestUrl = url || urljoin(BASE_URL, path);
     // TODO: if using token authentication
     // if (getState().user.token) {
     //   headers['auth'] = getState().user.token;
@@ -30,7 +37,7 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
     dispatch(startNetwork(networkLabel));
 
     return apiUtils
-      .request({ method, url, data, headers })
+      .request({ method, url: requestUrl, data, headers })
       .then(({ body }) => {
         dispatch(endNetwork(networkLabel));
 

@@ -1,6 +1,4 @@
 // @flow
-import { fetchPostsUrl } from 'constants/api.constants';
-
 import type { Posts } from 'sample/sample.types';
 import type { ActionCreator, ApiActionCreator } from 'types/redux.types';
 
@@ -17,7 +15,7 @@ export const fetchPosts: ApiActionCreator = () => ({
   payload: {
     networkLabel: POSTS_LABEL,
     method: 'GET',
-    url: fetchPostsUrl(),
+    path: 'posts',
     onSuccess: setPosts
   },
   meta: {

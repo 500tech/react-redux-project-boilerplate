@@ -17,6 +17,7 @@ export type ApiAction = {|
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS',
     data?: {},
     url?: string,
+    path?: string,
     onSuccess?: (data: any) => Action | Action[],
     onError?: (error: any) => Action | Action[]
   },

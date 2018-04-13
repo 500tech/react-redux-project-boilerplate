@@ -6,7 +6,7 @@ exports[`<Localization /> should render 1`] = `
   locale="en-US"
   messages={
     Object {
-      "homepage.title": "Hello World",
+      "homepage.title": "Welcome to the 500Tech boilerplate",
     }
   }
 >

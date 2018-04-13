@@ -39,11 +39,11 @@ describe('Middleware: API', () => {
       const action = {
         type: 'FETCH_POSTS',
         payload: {
-          label: 'posts',
+          networkLabel: 'posts',
           method: 'GET',
-          url: 'http://example.com',
-          onSuccess: (posts, dispatch) =>
-            dispatch({ type: 'DATA_ACTION', payload: posts })
+          baseUrl: 'http://example.com',
+          path: 'resource',
+          onSuccess: posts => ({ type: 'DATA_ACTION', payload: posts })
         },
         meta: {
           api: true
@@ -54,15 +54,37 @@ describe('Middleware: API', () => {
 
       expect(apiSpy).toHaveBeenCalledWith({
         method: 'GET',
-        url: 'http://example.com',
+        url: 'http://example.com/resource',
         data: undefined,
         headers: {}
       });
       expect(dispatchSpy.mock.calls[0]).toEqual([startNetwork('posts')]);
-      expect(dispatchSpy.mock.calls[1]).toEqual([endNetwork('posts')]);
-      expect(dispatchSpy.mock.calls[2]).toEqual([
+      expect(dispatchSpy.mock.calls[1]).toEqual([
         { type: 'DATA_ACTION', payload: 'data' }
       ]);
+      expect(dispatchSpy.mock.calls[2]).toEqual([endNetwork('posts')]);
+    });
+    test('should use default baseURL', async () => {
+      const action = {
+        type: 'FETCH_POSTS',
+        payload: {
+          networkLabel: 'posts',
+          method: 'GET',
+          path: 'resource'
+        },
+        meta: {
+          api: true
+        }
+      };
+
+      await middlewareDispatcher(undefined, action, dispatchSpy);
+
+      expect(apiSpy).toHaveBeenCalledWith({
+        method: 'GET',
+        url: 'http://test.com/resource',
+        data: undefined,
+        headers: {}
+      });
     });
   });
 
@@ -93,11 +115,10 @@ describe('Middleware: API', () => {
       const action = {
         type: 'FETCH_POSTS',
         payload: {
-          label: 'posts',
+          networkLabel: 'posts',
           method: 'GET',
-          url: 'http://example.com',
-          onError: (err, dispatch) =>
-            dispatch({ type: 'ERROR_ACTION', payload: err })
+          path: 'resource',
+          onError: err => ({ type: 'ERROR_ACTION', payload: err })
         },
         meta: {
           api: true
@@ -107,10 +128,10 @@ describe('Middleware: API', () => {
       await middlewareDispatcher(undefined, action, dispatchSpy);
 
       expect(dispatchSpy.mock.calls[0]).toEqual([startNetwork('posts')]);
-      expect(dispatchSpy.mock.calls[1]).toEqual([endNetwork('posts')]);
-      expect(dispatchSpy.mock.calls[2]).toEqual([
+      expect(dispatchSpy.mock.calls[1]).toEqual([
         { type: 'ERROR_ACTION', payload: { body: 'data' } }
       ]);
+      expect(dispatchSpy.mock.calls[2]).toEqual([endNetwork('posts')]);
     });
   });
 });

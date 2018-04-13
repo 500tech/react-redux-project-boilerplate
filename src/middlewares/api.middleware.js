@@ -15,7 +15,7 @@ export const BASE_URL: string = process.env.REACT_APP_BASE_URL;
 
 const apiMiddleware: Middleware = ({ dispatch, getState }) => {
   const dispatchActions = actions => {
-    compact(castArray(actions)).forEach(dispatch);
+    compact(castArray(actions)).forEach(action => dispatch(action));
   };
 
   return next => action => {
@@ -23,10 +23,10 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
       return next(action);
     }
     const { payload } = action;
-    const { path, url, onSuccess, onError } = payload || {};
+    const { path, baseUrl, onSuccess, onError } = payload || {};
     const { networkLabel, data, method = 'GET' } = payload || {};
     const headers = {};
-    const requestUrl = url || urljoin(BASE_URL, path);
+    const requestUrl = urljoin(baseUrl || BASE_URL, path);
     // TODO: if using token authentication
     // if (getState().user.token) {
     //   headers['auth'] = getState().user.token;
@@ -39,20 +39,23 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
     return apiUtils
       .request({ method, url: requestUrl, data, headers })
       .then(({ body }) => {
-        if (onSuccess) dispatchActions(onSuccess(body));
+        if (onSuccess) {
+          dispatchActions(onSuccess(body));
+        }
 
         dispatch(endNetwork(networkLabel));
       })
       .catch(error => {
         console.error('API error', error, action);
 
-        dispatch(endNetwork(networkLabel));
-
         if (get('response.status', error) === 401) {
           // TODO: handle 401
         }
 
-        if (onError) dispatchActions(onError(error));
+        if (onError) {
+          dispatchActions(onError(error));
+        }
+        dispatch(endNetwork(networkLabel));
       });
   };
 };

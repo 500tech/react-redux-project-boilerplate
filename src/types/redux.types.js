@@ -16,7 +16,7 @@ export type ApiAction = {|
     networkLabel?: string,
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS',
     data?: {},
-    url?: string,
+    baseUrl?: string,
     path?: string,
     onSuccess?: (data: any) => Action | Action[],
     onError?: (error: any) => Action | Action[]

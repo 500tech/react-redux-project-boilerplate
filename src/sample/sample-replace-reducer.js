@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import store from 'store';
 import { reducersMap } from 'reducers/root.reducer';
 import sample from 'sample/sample.reducer';

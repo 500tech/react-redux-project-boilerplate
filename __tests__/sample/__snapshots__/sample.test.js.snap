@@ -3,7 +3,9 @@
 exports[`<Sample /> should render 1`] = `
 <sample__StyledContainer>
   <h1>
-    Welcome to the 500Tech boilerplate
+    <FormattedMessage
+      id="homepage.title"
+    />
   </h1>
   <h3>
     To get started, search your project for // TODO
@@ -25,7 +27,9 @@ exports[`<Sample /> should render 1`] = `
 exports[`<Sample /> should render 3 posts 1`] = `
 <sample__StyledContainer>
   <h1>
-    Welcome to the 500Tech boilerplate
+    <FormattedMessage
+      id="homepage.title"
+    />
   </h1>
   <h3>
     To get started, search your project for // TODO
@@ -78,7 +82,9 @@ exports[`<Sample /> should render 3 posts 1`] = `
 exports[`<Sample /> should render loading when component is in loading state 1`] = `
 <sample__StyledContainer>
   <h1>
-    Welcome to the 500Tech boilerplate
+    <FormattedMessage
+      id="homepage.title"
+    />
   </h1>
   <h3>
     To get started, search your project for // TODO

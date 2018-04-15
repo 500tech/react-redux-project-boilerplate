@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import store from 'store';
+
 import { RESTORE_LOCAL_STORAGE_KEY } from 'constants/restore.constants';
 
 const RestoreButton = styled.button`
@@ -9,16 +10,24 @@ const RestoreButton = styled.button`
   border: none;
   border-radius: 5px;
   margin-right: 5px;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   color: white;
   text-transform: uppercase;
   font-weight: 500;
+  opacity: 0.1;
+  &:hover {
+    opacity: 0.9;
+  }
 `;
 
 const ClearButton = styled(RestoreButton)`
   background: linear-gradient(to top, #d04e4d, #ff605e);
   ${({ disabled }) => (disabled ? 'opacity: 0.3;' : '')} &:active {
     background: linear-gradient(to top, #ff605e, #d04e4d);
+  }
+  opacity: ${({ disabled }) => (disabled ? 0.1 : 0.9)};
+  &:hover {
+    opacity: ${({ disabled }) => (disabled ? 0.5 : 0.9)};
   }
 `;
 

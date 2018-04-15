@@ -1,5 +1,6 @@
 // @flow
-import { get } from 'lodash/fp';
+import { get, castArray, compact } from 'lodash/fp';
+import urljoin from 'url-join';
 
 import apiUtils from 'utils/api.utils';
 import { startNetwork, endNetwork } from 'actions/network.actions';
@@ -7,44 +8,56 @@ import { startNetwork, endNetwork } from 'actions/network.actions';
 import type { Middleware } from 'types/redux.types';
 // import type { Middleware } from 'redux'; doesn't work?
 
-const apiMiddleware: Middleware = ({
-  dispatch,
-  getState
-}) => next => action => {
-  if (!get('meta.api', action)) {
-    return next(action);
-  }
-  const { payload } = action;
-  const { url, onSuccess, onError } = payload || {};
-  const { label, data, method = 'GET' } = payload || {};
-  const headers = {};
-  // TODO: if using token authentication
-  // if (getState().user.token) {
-  //   headers['auth'] = getState().user.token;
-  // }
+declare var process: any;
 
-  next(action);
+// TODO: replace in .env.X to correct URL
+export const BASE_URL: string = process.env.REACT_APP_BASE_URL;
 
-  dispatch(startNetwork(label));
+const apiMiddleware: Middleware = ({ dispatch, getState }) => {
+  const dispatchActions = actions => {
+    compact(castArray(actions)).forEach(action => dispatch(action));
+  };
 
-  return apiUtils
-    .request({ method, url, data, headers })
-    .then(({ body }) => {
-      dispatch(endNetwork(label));
+  return next => action => {
+    if (!get('meta.api', action)) {
+      return next(action);
+    }
+    const { payload } = action;
+    const { path, baseUrl, onSuccess, onError } = payload || {};
+    const { networkLabel, data, method = 'GET' } = payload || {};
+    const headers = {};
+    const requestUrl = urljoin(baseUrl || BASE_URL, path);
+    // TODO: if using token authentication
+    // if (getState().user.token) {
+    //   headers['auth'] = getState().user.token;
+    // }
 
-      if (onSuccess) onSuccess(body, dispatch);
-    })
-    .catch(error => {
-      console.error('API error', error, action);
+    next(action);
 
-      dispatch(endNetwork(label));
+    dispatch(startNetwork(networkLabel));
 
-      if (get('response.status', error) === 401) {
-        // TODO: handle 401
-      }
+    return apiUtils
+      .request({ method, url: requestUrl, data, headers })
+      .then(({ body }) => {
+        if (onSuccess) {
+          dispatchActions(onSuccess(body));
+        }
 
-      if (onError) onError(error, dispatch);
-    });
+        dispatch(endNetwork(networkLabel));
+      })
+      .catch(error => {
+        console.error('API error', error, action);
+
+        if (get('response.status', error) === 401) {
+          // TODO: handle 401
+        }
+
+        if (onError) {
+          dispatchActions(onError(error));
+        }
+        dispatch(endNetwork(networkLabel));
+      });
+  };
 };
 
 export default apiMiddleware;

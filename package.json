@@ -13,7 +13,6 @@
     "http-server": "0.11.1",
     "lodash": "4.17.5",
     "moment": "2.20.1",
-    "onchange": "3.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-intl": "2.4.0",
@@ -27,7 +26,8 @@
     "redux-logger": "3.0.6",
     "reselect": "3.0.1",
     "styled-components": "3.1.6",
-    "superagent": "3.8.2"
+    "superagent": "3.8.2",
+    "url-join": "4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -64,6 +64,8 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "flow-bin": "0.65.0",
     "husky": "0.14.3",
-    "jest-enzyme": "^6.0.0"
+    "jest-enzyme": "^6.0.0",
+    "mimic": "2.0.2",
+    "onchange": "3.3.0"
   }
 }

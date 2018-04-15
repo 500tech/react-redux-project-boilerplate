@@ -1,6 +1,6 @@
 // @flow
 import type { Locale } from 'types/common.types';
-import translations from './translations.json';
+import translations from './en-US.translations.json';
 
 const enUS: Locale = {
   dateTimeFormat: {

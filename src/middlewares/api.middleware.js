@@ -32,11 +32,11 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
     //   headers['auth'] = getState().user.token;
     // }
 
-    next(action);
+    const result = next(action);
 
     dispatch(startNetwork(networkLabel));
 
-    return apiUtils
+    apiUtils
       .request({ method, url: requestUrl, data, headers })
       .then(({ body }) => {
         if (onSuccess) {
@@ -57,6 +57,8 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
         }
         dispatch(endNetwork(networkLabel));
       });
+
+    return result;
   };
 };
 

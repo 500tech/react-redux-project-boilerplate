@@ -3,7 +3,7 @@
 exports[`Actions: network endNetwork 1`] = `
 Object {
   "payload": Object {
-    "label": "posts",
+    "networkLabel": "posts",
   },
   "type": "[network] End",
 }
@@ -12,7 +12,7 @@ Object {
 exports[`Actions: network startNetwork 1`] = `
 Object {
   "payload": Object {
-    "label": "posts",
+    "networkLabel": "posts",
   },
   "type": "[network] Start",
 }

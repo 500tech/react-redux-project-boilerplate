@@ -32,7 +32,7 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
     //   headers['auth'] = getState().user.token;
     // }
 
-    const result = next(action);
+    next(action);
 
     dispatch(startNetwork(networkLabel));
 
@@ -57,8 +57,6 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
         }
         dispatch(endNetwork(networkLabel));
       });
-
-    return result;
   };
 };
 

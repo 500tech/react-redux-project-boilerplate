@@ -11,12 +11,9 @@ describe('Actions: sample', () => {
 
   test('fetchPosts: should fire setPosts with payload', () => {
     const action = fetchPosts();
-    const dispatch = jest.fn();
 
-    expect(dispatch).not.toHaveBeenCalled();
-
-    action.payload.onSuccess(posts, dispatch);
-    expect(dispatch).toHaveBeenCalledWith(setPosts(posts));
+    const nextAction = action.payload.onSuccess(posts);
+    expect(nextAction).toEqual(setPosts(posts));
   });
 
   test('setPosts: should create action', () => {

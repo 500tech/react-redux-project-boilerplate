@@ -6,10 +6,10 @@ Object {
     "api": true,
   },
   "payload": Object {
-    "label": "posts",
     "method": "GET",
+    "networkLabel": "posts",
     "onSuccess": [Function],
-    "url": "undefined/posts",
+    "path": "posts",
   },
   "type": "[posts] Fetch Posts",
 }

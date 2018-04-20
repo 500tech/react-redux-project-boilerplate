@@ -36,7 +36,7 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
 
     dispatch(startNetwork(networkLabel));
 
-    return apiUtils
+    apiUtils
       .request({ method, url: requestUrl, data, headers })
       .then(({ body }) => {
         if (onSuccess) {

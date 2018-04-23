@@ -12,15 +12,15 @@ export type Action = {|
 /* eslint-disable no-use-before-define */
 export type ApiAction = {|
   type: string,
-  payload?: {
+  payload?: {|
     networkLabel?: string,
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS',
     data?: {},
     baseUrl?: string,
-    path?: string,
+    path: string,
     onSuccess?: (data: any) => Action | Action[],
     onError?: (error: any) => Action | Action[]
-  },
+  |},
   meta?: {
     api: boolean
   },

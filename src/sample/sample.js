@@ -35,7 +35,7 @@ type OwnProps = {};
 /* 
 * Sample component pulling data from server on mount
 */
-export class Sample extends React.Component<ConnectedProps & OwnProps> {
+export class Sample extends React.PureComponent<ConnectedProps & OwnProps> {
   componentDidMount() {
     this.refresh();
   }

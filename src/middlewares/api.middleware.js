@@ -4,6 +4,7 @@ import urljoin from 'url-join';
 
 import apiUtils from 'utils/api.utils';
 import { startNetwork, endNetwork } from 'actions/network.actions';
+import type { ApiAction } from 'actions/api.actions';
 
 import type { Middleware } from 'types/redux.types';
 // import type { Middleware } from 'redux'; doesn't work?
@@ -22,9 +23,10 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
     if (!get('meta.api', action)) {
       return next(action);
     }
-    const { payload } = action;
-    const { path, baseUrl, onSuccess, onError } = payload || {};
-    const { networkLabel, data, method = 'GET' } = payload || {};
+
+    const { payload } = ((action: any): ApiAction);
+    const { path, baseUrl, onSuccess, onError } = payload;
+    const { networkLabel, data, method = 'GET' } = payload;
     const headers = {};
     const requestUrl = urljoin(baseUrl || BASE_URL, path);
     // TODO: if using token authentication

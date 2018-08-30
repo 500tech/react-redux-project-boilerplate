@@ -6,9 +6,9 @@ $ git remote set-url origin <the-specific-repo-git-url>
 $ yarn start
 ```
 
-# react-redux-project-boilerplate
+# 500Tech's React Redux Boilerplate
 
-500Tech Boilerplate for new projects using React &amp; Redux
+500Tech Boilerplate for new projects using React & Redux
 
 # Opinionated
 

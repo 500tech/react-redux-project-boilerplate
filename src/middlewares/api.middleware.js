@@ -7,7 +7,6 @@ import { startNetwork, endNetwork } from 'actions/network.actions';
 import type { ApiAction } from 'actions/api.actions';
 
 import type { Middleware } from 'types/redux.types';
-// import type { Middleware } from 'redux'; doesn't work?
 
 declare var process: any;
 

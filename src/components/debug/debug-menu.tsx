@@ -4,11 +4,7 @@ import styled from 'styled-components';
 
 import StateRestorer from 'components/debug/state-restorer';
 
-type Props = {
-  children: React.Node
-};
-
-const DebugMenu = ({ children }: Props) => (
+const DebugMenu = () => (
   <DebugMenuWrapper>
     <StateRestorer />
   </DebugMenuWrapper>

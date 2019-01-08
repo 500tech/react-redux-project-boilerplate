@@ -25,7 +25,7 @@ const apiUtils = {
 
     request.set(headers);
 
-    return request.then(data => data); // force request to be sent
+    return request.then((data: any) => data); // force request to be sent
   }
 };
 

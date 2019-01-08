@@ -1,12 +1,12 @@
-// @flow
-import type { BaseAction } from 'types/redux.types';
+import { BaseAction } from 'types/base-redux.types';
 
 export const START_NETWORK: string = '[network] Start';
 export const END_NETWORK: string = '[network] End';
 
-export type StartNetworkAction = BaseAction<{|
-  +networkLabel: string
-|}>;
+interface StartNetworkActionPayload {
+  networkLabel: string;
+}
+export type StartNetworkAction = BaseAction<StartNetworkActionPayload>;
 export type EndNetworkAction = StartNetworkAction;
 export type NetworkAction = StartNetworkAction | EndNetworkAction;
 

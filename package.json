@@ -7,13 +7,22 @@
     "npm": "~5.5.1"
   },
   "dependencies": {
-    "@500tech/react-scripts": "^1",
+    "@500tech/react-scripts": "^1.1.4",
+    "@types/lodash": "^4.14.119",
+    "@types/react-intl": "^2.3.15",
+    "@types/react-loadable": "^5.4.3",
+    "@types/react-redux": "^6.0.12",
+    "@types/react-router": "^4.4.3",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/redux-actions": "^2.3.1",
+    "@types/superagent": "^3.8.6",
+    "@types/url-join": "^4.0.0",
     "history": "4.7.2",
     "http-server": "0.11.1",
     "lodash": "4.17.5",
     "moment": "2.20.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-intl": "2.4.0",
     "react-loadable": "5.3.1",
     "react-redux": "5.0.6",
@@ -37,7 +46,6 @@
     "prettier:watch": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
     "precommit": "lint-staged",
     "postcommit": "git reset",
-    "flow": "flow",
     "heroku-postbuild": "npm run build",
     "start:heroku": "http-server -p ${PORT:=8080} build"
   },
@@ -61,10 +69,20 @@
   "devDependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "flow-bin": "0.65.0",
     "husky": "0.14.3",
     "jest-enzyme": "^6.0.0",
     "mimic": "2.0.2",
-    "onchange": "3.3.0"
-  }
+    "onchange": "3.3.0",
+    "typescript": "3.2.2",
+    "@types/jest": "23.3.12",
+    "@types/node": "10.12.18",
+    "@types/react": "16.7.18",
+    "@types/react-dom": "16.0.11"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

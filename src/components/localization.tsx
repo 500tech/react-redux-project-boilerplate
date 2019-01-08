@@ -1,36 +1,38 @@
-// @flow
 import * as React from 'react';
 import forEach from 'lodash/forEach';
 import { connect } from 'react-redux';
-import { IntlProvider, addLocaleData } from 'react-intl';
-import moment from 'moment';
+import { IntlProvider, addLocaleData, Locale } from 'react-intl';
+import moment, { LocaleSpecification } from 'moment';
 
 import store from 'store';
 
-import locales from 'constants/locales';
+import locales, { LocaleTypes } from 'constants/locales';
 
-import type { State } from 'types/redux.types';
-import type { MapStateToProps } from 'react-redux';
+import { State } from 'types/redux.types';
+import { MapStateToProps } from 'react-redux';
 
 forEach(locales, (locale, key) =>
-  moment.defineLocale(key, locale.dateTimeFormat)
+  moment.defineLocale(
+    key,
+    (locale.dateTimeFormat as unknown) as LocaleSpecification
+  )
 );
 
 // Go over all of the available locales and register them
-forEach(locales, (value, key) => {
-  addLocaleData({
+forEach(locales, (_value, key: string) => {
+  addLocaleData(({
     locale: key,
     // Couldn't find any documentation about 'pluralRuleFunction', throws error if not present
     pluralRuleFunction: () => {}
-  });
+  } as unknown) as Locale);
 });
 
 type ConnectedProps = {
-  locale: string
+  locale: LocaleTypes;
 };
 
 type OwnProps = {
-  children: React.Node
+  children: React.ReactNode;
 };
 
 export const Localization = ({
@@ -45,17 +47,17 @@ export const Localization = ({
   </IntlProvider>
 );
 
-const mapStateToProps: MapStateToProps<State, OwnProps, {}> = ({
+const mapStateToProps: MapStateToProps<ConnectedProps, OwnProps, State> = ({
   localization
 }: State) => ({
   locale: localization.locale
 });
 
-let currentLocale = store.getState().localization.locale;
+let currentLocale = (store.getState() as State).localization.locale;
 
 moment.locale(currentLocale);
 store.subscribe(() => {
-  const newLocale = store.getState().localization.locale;
+  const newLocale = (store.getState() as State).localization.locale;
 
   if (newLocale !== currentLocale) {
     currentLocale = newLocale;
@@ -63,4 +65,7 @@ store.subscribe(() => {
   }
 });
 
-export default connect(mapStateToProps, {})(Localization);
+export default connect(
+  mapStateToProps,
+  {}
+)(Localization);

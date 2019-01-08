@@ -2,14 +2,14 @@
 import { get, set, keyBy } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
-import type { PostsMap } from 'sample/sample.types';
-import type { SetPostsAction } from 'sample/sample.actions';
+import { PostsMap } from 'sample/sample.types';
+import { SetPostsAction } from 'sample/sample.actions';
 
 import * as AT from 'sample/sample.actions';
 
-export type SampleState = {|
-  +posts: PostsMap
-|};
+export type SampleState = {
+  posts: PostsMap;
+};
 
 const initialState: SampleState = {
   posts: {}

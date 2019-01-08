@@ -1,15 +1,15 @@
-// @flow
 // TODO: remove this file if no localization is needed
 import { get, set } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
-import type { SetLocaleAction } from 'actions/localization.actions';
+import { SetLocaleAction } from 'actions/localization.actions';
 
 import * as AT from 'actions/localization.actions';
+import { LocaleTypes } from 'constants/locales';
 
-export type LocalizationState = {|
-  +locale: string
-|};
+export interface LocalizationState {
+  locale: LocaleTypes;
+}
 
 const initialState: LocalizationState = {
   locale: 'en-US'

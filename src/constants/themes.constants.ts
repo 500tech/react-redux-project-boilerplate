@@ -1,4 +1,3 @@
-// @flow
 const theme = {
   white: '#FFF'
 };

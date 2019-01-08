@@ -4,17 +4,19 @@ import urljoin from 'url-join';
 
 import apiUtils from 'utils/api.utils';
 import { startNetwork, endNetwork } from 'actions/network.actions';
-import type { ApiAction } from 'actions/api.actions';
-
-import type { Middleware } from 'types/redux.types';
+import { ApiAction, ApiActionPayload } from 'actions/api.actions';
+import { BaseAction } from 'types/base-redux.types';
+import { Middleware } from 'types/redux.types';
 
 declare var process: any;
 
 // TODO: replace in .env.X to correct URL
 export const BASE_URL: string = process.env.REACT_APP_BASE_URL;
 
-const apiMiddleware: Middleware = ({ dispatch, getState }) => {
-  const dispatchActions = actions => {
+const apiMiddleware: Middleware = ({ dispatch }) => {
+  const dispatchActions = (
+    actions: BaseAction<any> | Array<BaseAction<any>>
+  ) => {
     compact(castArray(actions)).forEach(action => dispatch(action));
   };
 
@@ -23,9 +25,16 @@ const apiMiddleware: Middleware = ({ dispatch, getState }) => {
       return next(action);
     }
 
-    const { payload } = ((action: any): ApiAction);
-    const { path, baseUrl, onSuccess, onError } = payload;
-    const { networkLabel, data, method = 'GET' } = payload;
+    const { payload } = action as ApiAction;
+    const {
+      path,
+      baseUrl,
+      onSuccess,
+      onError,
+      networkLabel,
+      data,
+      method = 'GET'
+    } = payload as ApiActionPayload;
     const headers = {};
     const requestUrl = urljoin(baseUrl || BASE_URL, path);
     // TODO: if using token authentication

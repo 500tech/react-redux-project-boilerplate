@@ -38,10 +38,6 @@ const SaveButton = styled(RestoreButton)`
   }
 `;
 
-type ConnectedProps = {
-  save: () => void
-};
-
 const get = () => localStorage.getItem(RESTORE_LOCAL_STORAGE_KEY);
 const clear = () => localStorage.removeItem(RESTORE_LOCAL_STORAGE_KEY);
 const save = () =>
@@ -50,7 +46,7 @@ const save = () =>
     JSON.stringify(store.getState())
   );
 
-class StateRestorer extends React.Component<ConnectedProps, {}> {
+class StateRestorer extends React.Component<{}, {}> {
   state = {
     clearable: get()
   };
@@ -71,12 +67,12 @@ class StateRestorer extends React.Component<ConnectedProps, {}> {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <ClearButton disabled={!this.state.clearable} onClick={this.clear}>
           Clear State
         </ClearButton>
         <SaveButton onClick={this.save}>Save State</SaveButton>
-      </React.Fragment>
+      </>
     );
   }
 }

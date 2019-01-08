@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash/fp';
@@ -8,10 +7,10 @@ import { FormattedMessage } from 'react-intl';
 import * as sampleActions from 'sample/sample.actions';
 import { isLoadingSelector } from 'selectors/network.selectors';
 
-import type { State } from 'types/redux.types';
-import type { SampleState } from 'sample/sample.reducer';
-import type { MapStateToProps } from 'react-redux';
-import type { PostsMap, Post } from 'sample/sample.types';
+import { State } from 'types/redux.types';
+import { SampleState } from 'sample/sample.reducer';
+import { MapStateToProps } from 'react-redux';
+import { PostsMap, Post } from 'sample/sample.types';
 
 import 'sample/sample-replace-reducer';
 
@@ -20,7 +19,7 @@ import 'sample/sample-replace-reducer';
 * Do not use this pattern normally
 */
 
-type StateWithSample = State & {
+interface StateWithSample extends State {
   sample: SampleState
 };
 
@@ -102,7 +101,12 @@ export const StyledPost = styled.div`
   margin: 10px;
 `;
 
-const mapStateToProps: MapStateToProps<StateWithSample, OwnProps, {}> = (
+interface StateProps {
+  posts: PostsMap;
+  isLoading: boolean;
+}
+
+const mapStateToProps: MapStateToProps<StateProps, OwnProps, StateWithSample> = (
   state: StateWithSample
 ) => ({
   posts: state.sample.posts,

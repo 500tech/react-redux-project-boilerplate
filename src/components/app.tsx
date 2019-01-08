@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Router } from 'react-router-dom';
@@ -16,7 +15,7 @@ import Localization from 'components/localization'; // TODO: remove if no locali
 import Layout from 'components/layout/layout';
 import Sample from 'sample/sample'; // TODO: replace this with actual component
 
-class App extends React.Component<{||}> {
+class App extends React.Component<{}> {
   render() {
     return (
       <Provider store={store}>

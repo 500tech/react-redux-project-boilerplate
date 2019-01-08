@@ -1,15 +1,11 @@
-// @flow
 import { set } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
 import * as AT from 'actions/network.actions';
-import type {
-  StartNetworkAction,
-  EndNetworkAction
-} from 'actions/network.actions';
+import { StartNetworkAction, EndNetworkAction } from 'actions/network.actions';
 
 export type NetworkState = {
-  +[key: string]: number
+  [key: string]: number;
 };
 
 const initialState: NetworkState = {};
@@ -18,7 +14,7 @@ const networkReducer = handleActions(
   {
     [AT.START_NETWORK]: (
       state: NetworkState,
-      { payload: { networkLabel } = {} }: StartNetworkAction
+      { payload: { networkLabel } = { networkLabel: '' } }: StartNetworkAction
     ): NetworkState =>
       set(
         networkLabel,
@@ -28,7 +24,7 @@ const networkReducer = handleActions(
 
     [AT.END_NETWORK]: (
       state: NetworkState,
-      { payload: { networkLabel } = {} }: EndNetworkAction
+      { payload: { networkLabel } = { networkLabel: '' } }: EndNetworkAction
     ): NetworkState =>
       set(
         networkLabel,

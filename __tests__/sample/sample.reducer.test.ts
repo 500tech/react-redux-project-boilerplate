@@ -1,9 +1,10 @@
 import sampleReducer from 'sample/sample.reducer';
 import { setPosts } from 'sample/sample.actions';
+import {Post} from "../../src/sample/sample.types";
 
 describe('Reducer: sample', () => {
   test('should save posts', () => {
-    const posts = [{ id: 1, title: 'first post', body: 'first content' }];
+    const posts: Post[] = [{ id: 1, title: 'first post', body: 'first content', userId: 4 }];
     const action = setPosts(posts);
     const result = sampleReducer(undefined, action);
 
@@ -21,7 +22,7 @@ describe('Reducer: sample', () => {
         }
       }
     };
-    const posts = [{ id: 2, title: 'second post', body: 'third content' }];
+    const posts: Post[] = [{ id: 2, title: 'second post', body: 'third content', userId: 5 }];
     const action = setPosts(posts);
     const result = sampleReducer(initialState, action);
 

@@ -1,12 +1,12 @@
 import superagent from 'superagent';
 
 export type Request = {
-  method: string,
-  url: string,
-  data: any,
+  method: string;
+  url: string;
+  data: any;
   headers: {
-    [key: string]: string
-  }
+    [key: string]: string;
+  };
 };
 
 const apiUtils = {

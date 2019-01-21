@@ -1,4 +1,3 @@
-// @flow
 import { get, set, keyBy } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
@@ -17,8 +16,12 @@ const initialState: SampleState = {
 
 const sampleReducer = handleActions(
   {
-    [AT.SET_POSTS]: (state: SampleState, action: SetPostsAction): SampleState =>
-      set('posts', keyBy('id', get('payload.posts', action)), state)
+    [AT.SET_POSTS]: (
+      state: SampleState,
+      action: SetPostsAction
+    ): SampleState => {
+      return set('posts', keyBy('id', get('payload.posts', action)), state);
+    }
   },
   initialState
 );

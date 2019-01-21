@@ -3,12 +3,11 @@ import { BaseAction } from 'types/base-redux.types';
 
 export const SET_LOCALE: string = '[localization] Set Locale';
 
-export interface SetLocaleActionPayload {
-  locale: string;
+export interface SetLocaleAction extends BaseAction {
+  payload: {
+    locale: string;
+  };
 }
-
-export type SetLocaleAction = BaseAction<SetLocaleActionPayload>;
-export type LocalizationAction = SetLocaleAction;
 
 export const setLocale = (locale: string): SetLocaleAction => ({
   type: SET_LOCALE,

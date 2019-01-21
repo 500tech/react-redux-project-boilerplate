@@ -11,7 +11,7 @@ const setup = ({ locale = 'en-US' } = {}) => ({
 });
 
 describe.only('<Localization />', () => {
-  let momentSpy, storeSpy, Localization, subscribeCallback;
+  let momentSpy: any, storeSpy: any, Localization: any, subscribeCallback: any;
 
   beforeEach(() => {
     momentSpy = {

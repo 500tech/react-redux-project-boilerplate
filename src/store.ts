@@ -6,6 +6,10 @@ import apiMiddleware from 'middlewares/api.middleware';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
+declare const window: Window & {
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?(a: any): void;
+};
+
 const composeEnhancers =
   (isDev && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
@@ -20,6 +24,7 @@ const savedState = localStorage.getItem(RESTORE_LOCAL_STORAGE_KEY);
 const store = createStore(
   rootReducer,
   ...(savedState && isDev ? [JSON.parse(savedState)] : []),
+  // @ts-ignore
   composeEnhancers(applyMiddleware(...middlewares))
 );
 

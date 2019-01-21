@@ -3,20 +3,20 @@ import { BaseAction } from 'types/base-redux.types';
 export const START_NETWORK: string = '[network] Start';
 export const END_NETWORK: string = '[network] End';
 
-interface StartNetworkActionPayload {
-  networkLabel: string;
+export interface NetworkAction extends BaseAction {
+  payload: {
+    networkLabel: string;
+  };
 }
-export type StartNetworkAction = BaseAction<StartNetworkActionPayload>;
-export type EndNetworkAction = StartNetworkAction;
-export type NetworkAction = StartNetworkAction | EndNetworkAction;
 
-export const startNetwork = (networkLabel: string): StartNetworkAction => ({
+export const startNetwork = (networkLabel: string): NetworkAction => ({
   type: START_NETWORK,
   payload: {
     networkLabel
   }
 });
-export const endNetwork = (networkLabel: string): EndNetworkAction => ({
+
+export const endNetwork = (networkLabel: string): NetworkAction => ({
   type: END_NETWORK,
   payload: {
     networkLabel

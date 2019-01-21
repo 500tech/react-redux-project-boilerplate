@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Sample /> should render 1`] = `
-<sample__StyledContainer>
+<StyledContainer>
   <h1>
-    <FormattedMessage
-      id="homepage.title"
-    />
+    Title
   </h1>
   <h3>
     To get started, search your project for // TODO
@@ -21,15 +19,13 @@ exports[`<Sample /> should render 1`] = `
     Posts from remote server
   </h2>
   <div />
-</sample__StyledContainer>
+</StyledContainer>
 `;
 
 exports[`<Sample /> should render 3 posts 1`] = `
-<sample__StyledContainer>
+<StyledContainer>
   <h1>
-    <FormattedMessage
-      id="homepage.title"
-    />
+    Title
   </h1>
   <h3>
     To get started, search your project for // TODO
@@ -45,7 +41,7 @@ exports[`<Sample /> should render 3 posts 1`] = `
     Posts from remote server
   </h2>
   <div>
-    <sample__StyledPost
+    <StyledPost
       key="1"
     >
       <h4>
@@ -54,8 +50,8 @@ exports[`<Sample /> should render 3 posts 1`] = `
       <p>
         first post content
       </p>
-    </sample__StyledPost>
-    <sample__StyledPost
+    </StyledPost>
+    <StyledPost
       key="2"
     >
       <h4>
@@ -64,8 +60,8 @@ exports[`<Sample /> should render 3 posts 1`] = `
       <p>
         second post content
       </p>
-    </sample__StyledPost>
-    <sample__StyledPost
+    </StyledPost>
+    <StyledPost
       key="3"
     >
       <h4>
@@ -74,17 +70,15 @@ exports[`<Sample /> should render 3 posts 1`] = `
       <p>
         third post content
       </p>
-    </sample__StyledPost>
+    </StyledPost>
   </div>
-</sample__StyledContainer>
+</StyledContainer>
 `;
 
 exports[`<Sample /> should render loading when component is in loading state 1`] = `
-<sample__StyledContainer>
+<StyledContainer>
   <h1>
-    <FormattedMessage
-      id="homepage.title"
-    />
+    Title
   </h1>
   <h3>
     To get started, search your project for // TODO
@@ -102,5 +96,5 @@ exports[`<Sample /> should render loading when component is in loading state 1`]
   <div>
     loading...
   </div>
-</sample__StyledContainer>
+</StyledContainer>
 `;

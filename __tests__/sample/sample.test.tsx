@@ -8,7 +8,17 @@ import { Sample, StyledPost } from 'sample/sample';
 // tests with any reference to the store
 jest.mock('sample/sample-replace-reducer', () => {});
 
-const setup = ({ posts = [], isLoading = false, fetchPosts = noop } = {}) => ({
+interface SetupParams {
+  posts?: any;
+  isLoading?: boolean;
+  fetchPosts?: () => void;
+}
+
+const setup = ({
+  posts = [],
+  isLoading = false,
+  fetchPosts = noop
+}: SetupParams = {}) => ({
   posts,
   isLoading,
   fetchPosts

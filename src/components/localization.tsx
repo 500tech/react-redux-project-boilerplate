@@ -9,7 +9,6 @@ import store from 'store';
 import locales, { LocaleTypes } from 'constants/locales';
 
 import { State } from 'types/redux.types';
-import { MapStateToProps } from 'react-redux';
 
 forEach(locales, (locale, key) =>
   moment.defineLocale(
@@ -27,18 +26,7 @@ forEach(locales, (_value, key: string) => {
   } as unknown) as Locale);
 });
 
-type ConnectedProps = {
-  locale: LocaleTypes;
-};
-
-type OwnProps = {
-  children: React.ReactNode;
-};
-
-export const Localization = ({
-  locale,
-  children
-}: ConnectedProps & OwnProps) => (
+export const Localization = ({ locale, children }: Props) => (
   <IntlProvider
     locale={locale}
     key={locale}
@@ -47,10 +35,18 @@ export const Localization = ({
   </IntlProvider>
 );
 
-const mapStateToProps: MapStateToProps<ConnectedProps, OwnProps, State> = ({
-  localization
-}: State) => ({
-  locale: localization.locale
+interface OwnProps {
+  children: React.ReactNode;
+}
+
+interface StateProps {
+  locale: LocaleTypes;
+}
+
+type Props = StateProps & OwnProps;
+
+const mapStateToProps = (state: State): StateProps => ({
+  locale: state.localization.locale
 });
 
 let currentLocale = (store.getState() as State).localization.locale;
@@ -65,7 +61,4 @@ store.subscribe(() => {
   }
 });
 
-export default connect(
-  mapStateToProps,
-  {}
-)(Localization);
+export default connect(mapStateToProps)(Localization);

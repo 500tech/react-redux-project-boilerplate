@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type Props = {
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
 const Layout = ({ children }: Props) => (

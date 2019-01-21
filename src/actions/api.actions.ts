@@ -1,32 +1,28 @@
-import { set } from 'lodash/fp';
-import { Action } from 'types/redux.types';
-import { BaseAction, BaseActionWithMeta } from 'types/base-redux.types';
+import { BaseAction } from 'types/base-redux.types';
 
 export type HttpMethod =
-  | 'GET'
-  | 'POST'
-  | 'PUT'
-  | 'DELETE'
-  | 'PATCH'
-  | 'HEAD'
-  | 'OPTIONS';
+  | 'get'
+  | 'post'
+  | 'put'
+  | 'delete'
+  | 'path'
+  | 'head'
+  | 'options';
 
-export interface ApiActionPayload {
-  networkLabel: string;
-  method: HttpMethod;
-  path: string;
-  data?: {};
-  baseUrl?: string;
-  onSuccess?: (data: any) => Action | Action[];
-  onError?: (data: any) => Action | Action[];
+type OnSuccess<ResponseBody> = (data: ResponseBody) => BaseAction;
+type OnError = (error: any) => void;
+
+export interface ApiAction<ResponseBody> extends BaseAction {
+  meta: {
+    api: true;
+  };
+  payload: {
+    networkLabel: string;
+    method: HttpMethod;
+    path: string;
+    data?: any;
+    baseUrl?: string;
+    onSuccess: OnSuccess<ResponseBody> | OnSuccess<ResponseBody>[];
+    onError?: OnError | OnError[];
+  };
 }
-
-interface ApiActionMeta {
-  api: true;
-}
-
-export type ApiActionInput = BaseAction<ApiActionPayload>;
-export type ApiAction = BaseActionWithMeta<ApiActionPayload, ApiActionMeta>;
-
-export const apiAction = (action: ApiActionInput): ApiAction =>
-  set('meta.api', true, action) as ApiAction;

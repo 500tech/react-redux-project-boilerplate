@@ -6,7 +6,7 @@ Object {
     "api": true,
   },
   "payload": Object {
-    "method": "GET",
+    "method": "get",
     "networkLabel": "posts",
     "onSuccess": [Function],
     "path": "posts",
@@ -20,8 +20,10 @@ Object {
   "payload": Object {
     "posts": Array [
       Object {
+        "body": "test",
         "id": 1,
         "title": "test",
+        "userId": 1,
       },
     ],
   },

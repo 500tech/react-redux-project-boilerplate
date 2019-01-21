@@ -1,9 +1,10 @@
 import { createMiddlewareDispatcher } from '__tests__/helpers';
 import { FETCH_POSTS } from 'sample/sample.actions';
 import { endNetwork, startNetwork } from 'actions/network.actions';
+import {PostsApiResponse} from "../../src/sample/sample.actions";
 
 describe('Middleware: API', () => {
-  let getSpy, dispatchSpy, middlewareDispatcher, apiSpy;
+  let getSpy: jest.Mock, dispatchSpy: jest.Mock, middlewareDispatcher: Function, apiSpy: jest.Mock;
 
   beforeEach(() => {
     dispatchSpy = jest.fn();
@@ -43,7 +44,7 @@ describe('Middleware: API', () => {
           method: 'GET',
           baseUrl: 'http://example.com',
           path: 'resource',
-          onSuccess: posts => ({ type: 'DATA_ACTION', payload: posts })
+          onSuccess: (posts: PostsApiResponse) => ({ type: 'DATA_ACTION', payload: posts })
         },
         meta: {
           api: true
@@ -118,7 +119,7 @@ describe('Middleware: API', () => {
           networkLabel: 'posts',
           method: 'GET',
           path: 'resource',
-          onError: err => ({ type: 'ERROR_ACTION', payload: err })
+          onError: (err: any) => ({ type: 'ERROR_ACTION', payload: err })
         },
         meta: {
           api: true

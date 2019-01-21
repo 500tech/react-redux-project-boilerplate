@@ -15,12 +15,16 @@ const initialState: LocalizationState = {
   locale: 'en-US'
 };
 
-const localizationReducer = handleActions(
+const localizationReducer = handleActions<LocalizationState>(
   {
     [AT.SET_LOCALE]: (
       state: LocalizationState,
       action: SetLocaleAction
-    ): LocalizationState => set('locale', get('payload.locale', action), state)
+    ): LocalizationState => {
+      const locale = get('payload.locale', action);
+
+      return set('locale', locale, state);
+    }
   },
   initialState
 );

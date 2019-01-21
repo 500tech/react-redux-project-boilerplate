@@ -1,4 +1,13 @@
-export {
-  Action as BaseAction,
-  ActionMeta as BaseActionWithMeta
-} from 'redux-actions';
+export interface BaseAction {
+  type: string;
+  meta?: {
+    [key: string]: any;
+    notifications?: {
+      success?: {
+        title?: string;
+        values?: object;
+      };
+    };
+  };
+  payload?: any;
+}

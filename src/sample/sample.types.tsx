@@ -4,7 +4,6 @@ export interface Post {
   title: string;
   body: string;
 }
-export type Posts = Array<Post>;
 export interface PostsMap {
   [key: number]: Post;
 }

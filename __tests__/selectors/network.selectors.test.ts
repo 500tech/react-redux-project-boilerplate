@@ -8,6 +8,8 @@ describe('Selectors: Network', () => {
           posts: 2
         }
       };
+
+      // @ts-ignore
       const result = isLoadingSelector(state, 'posts');
 
       expect(result).toBe(true);
@@ -19,6 +21,8 @@ describe('Selectors: Network', () => {
           posts: 0
         }
       };
+
+      // @ts-ignore
       const result = isLoadingSelector(state, 'posts');
 
       expect(result).toBe(false);

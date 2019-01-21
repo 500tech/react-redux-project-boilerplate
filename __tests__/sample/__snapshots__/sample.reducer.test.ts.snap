@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reducer: sample should override posts when there are existing posts 1`] = `
+Object {
+  "posts": Object {
+    "2": Object {
+      "body": "third content",
+      "id": 2,
+      "title": "second post",
+      "userId": 5,
+    },
+  },
+}
+`;
+
+exports[`Reducer: sample should save posts 1`] = `
+Object {
+  "posts": Object {
+    "1": Object {
+      "body": "first content",
+      "id": 1,
+      "title": "first post",
+      "userId": 4,
+    },
+  },
+}
+`;

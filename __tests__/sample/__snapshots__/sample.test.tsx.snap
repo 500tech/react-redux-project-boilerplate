@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sample /> should render 1`] = `
+<StyledContainer>
+  <h1>
+    Title
+  </h1>
+  <h3>
+    To get started, search your project for // TODO
+    <br />
+    This is a sample component that uses a sample action + reducer, it fetches posts from a remote server and displays them
+  </h3>
+  <img
+    alt="refresh"
+    onClick={[Function]}
+    src="https://www.materialui.co/materialIcons/navigation/refresh_grey_192x192.png"
+  />
+  <h2>
+    Posts from remote server
+  </h2>
+  <div />
+</StyledContainer>
+`;
+
+exports[`<Sample /> should render 3 posts 1`] = `
+<StyledContainer>
+  <h1>
+    Title
+  </h1>
+  <h3>
+    To get started, search your project for // TODO
+    <br />
+    This is a sample component that uses a sample action + reducer, it fetches posts from a remote server and displays them
+  </h3>
+  <img
+    alt="refresh"
+    onClick={[Function]}
+    src="https://www.materialui.co/materialIcons/navigation/refresh_grey_192x192.png"
+  />
+  <h2>
+    Posts from remote server
+  </h2>
+  <div>
+    <StyledPost
+      key="1"
+    >
+      <h4>
+        first post
+      </h4>
+      <p>
+        first post content
+      </p>
+    </StyledPost>
+    <StyledPost
+      key="2"
+    >
+      <h4>
+        second post
+      </h4>
+      <p>
+        second post content
+      </p>
+    </StyledPost>
+    <StyledPost
+      key="3"
+    >
+      <h4>
+        third post
+      </h4>
+      <p>
+        third post content
+      </p>
+    </StyledPost>
+  </div>
+</StyledContainer>
+`;
+
+exports[`<Sample /> should render loading when component is in loading state 1`] = `
+<StyledContainer>
+  <h1>
+    Title
+  </h1>
+  <h3>
+    To get started, search your project for // TODO
+    <br />
+    This is a sample component that uses a sample action + reducer, it fetches posts from a remote server and displays them
+  </h3>
+  <img
+    alt="refresh"
+    onClick={[Function]}
+    src="https://www.materialui.co/materialIcons/navigation/refresh_grey_192x192.png"
+  />
+  <h2>
+    Posts from remote server
+  </h2>
+  <div>
+    loading...
+  </div>
+</StyledContainer>
+`;

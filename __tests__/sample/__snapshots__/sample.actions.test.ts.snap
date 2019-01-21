@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Actions: sample fetchPosts: should create API action 1`] = `
+Object {
+  "meta": Object {
+    "api": true,
+  },
+  "payload": Object {
+    "method": "get",
+    "networkLabel": "posts",
+    "onSuccess": [Function],
+    "path": "posts",
+  },
+  "type": "[posts] Fetch Posts",
+}
+`;
+
+exports[`Actions: sample setPosts: should create action 1`] = `
+Object {
+  "payload": Object {
+    "posts": Array [
+      Object {
+        "body": "test",
+        "id": 1,
+        "title": "test",
+        "userId": 1,
+      },
+    ],
+  },
+  "type": "[posts] Set Posts",
+}
+`;

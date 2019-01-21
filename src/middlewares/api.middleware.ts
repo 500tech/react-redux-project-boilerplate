@@ -1,28 +1,30 @@
-import { get, castArray, compact } from 'lodash/fp';
+import {get, castArray, compact} from 'lodash/fp';
 import urljoin from 'url-join';
-import {Action, Dispatch, Store} from 'redux';
+import {Dispatch, Store, ActionCreator, Action} from 'redux';
 
 import apiUtils from 'utils/api.utils';
-import { startNetwork, endNetwork } from 'actions/network.actions';
-import { BaseAction } from 'types/base-redux.types';
-import { State } from 'types/redux.types';
-import { BASE_URL } from 'constants/config';
-import * as Logger from 'utils/logger';
+import {startNetwork, endNetwork} from 'actions/network.actions';
+import {BaseAction} from 'types/base-redux.types';
+import {State} from 'types/redux.types';
+import {BASE_URL} from 'constants/config';
 
 export function dispatchActions(
-  dispatch: Dispatch<Action>,
-  actions: BaseAction | BaseAction[]
+    dispatch: Dispatch<BaseAction>,
+    actions: ActionCreator<BaseAction> | ActionCreator<BaseAction>[],
+    response: any
 ) {
-  compact(castArray(actions)).forEach(action => dispatch(action));
+  compact(castArray(actions)).forEach((action: ActionCreator<BaseAction>) =>
+      dispatch(action(response.body || response.text))
+  );
 }
 
-export function apiMiddleware({ dispatch }: Store<State>) {
-  return (next: Dispatch<Action>) => async (action: BaseAction) => {
+export function apiMiddleware({dispatch}: Store<State>) {
+  return (next: Dispatch<BaseAction>) => async (action: BaseAction) => {
     if (!get('meta.api', action)) {
       return next(action);
     }
 
-    const { payload } = action;
+    const {payload} = action;
     const {
       path,
       baseUrl,
@@ -32,11 +34,12 @@ export function apiMiddleware({ dispatch }: Store<State>) {
       data,
       method
     } = payload;
-    const headers = {};
+    const headers: { [key: string]: string } = {};
     const requestUrl = urljoin(baseUrl || BASE_URL, path);
+
     // TODO: if using token authentication
-    // if (getState().user.token) {
-    //   headers['auth'] = getState().user.token;
+    // if (getState().auth) {
+    //   headers['Authorization'] = getState().auth.token;
     // }
 
     next(action);
@@ -51,19 +54,19 @@ export function apiMiddleware({ dispatch }: Store<State>) {
       });
 
       if (onSuccess) {
-        dispatchActions(dispatch, onSuccess(response.body || response.text));
+        dispatchActions(dispatch, onSuccess, response);
       }
 
       dispatch(endNetwork(networkLabel));
     } catch (error) {
-      Logger.error('API error', error, action);
+      console.error('API error', error, action);
 
       if (get('response.status', error) === 401) {
         // TODO: handle 401
       }
 
       if (onError) {
-        dispatchActions(dispatch, onError(error));
+        dispatchActions(dispatch, onError, error);
       }
       dispatch(endNetwork(networkLabel));
     }

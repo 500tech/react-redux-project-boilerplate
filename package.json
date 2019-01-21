@@ -51,6 +51,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "remove-typescript": "react-scripts remove-typescript",
     "prettier:all": "prettier --write 'src/**/*.{js,ts,tsx}'",
     "heroku-postbuild": "npm run build",
     "start:heroku": "http-server -p ${PORT:=8080} build"

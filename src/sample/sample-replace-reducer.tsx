@@ -13,4 +13,5 @@ const newReducer = combineReducers({
   sample
 });
 
+// @ts-ignore
 store.replaceReducer(newReducer);

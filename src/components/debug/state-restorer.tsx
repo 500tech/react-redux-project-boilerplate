@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import store from 'store';
 
 import { RESTORE_LOCAL_STORAGE_KEY } from 'constants/restore.constants';

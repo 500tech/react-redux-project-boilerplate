@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'emotion-theming';
 import { Router } from 'react-router-dom';
 import { Route } from 'react-router';
 import { Provider } from 'react-redux';

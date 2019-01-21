@@ -1,6 +1,6 @@
 import { get, castArray, compact } from 'lodash/fp';
 import urljoin from 'url-join';
-import { Dispatch, Store } from 'redux';
+import {Action, Dispatch, Store} from 'redux';
 
 import apiUtils from 'utils/api.utils';
 import { startNetwork, endNetwork } from 'actions/network.actions';
@@ -10,14 +10,14 @@ import { BASE_URL } from 'constants/config';
 import * as Logger from 'utils/logger';
 
 export function dispatchActions(
-  dispatch: Dispatch<State>,
+  dispatch: Dispatch<Action>,
   actions: BaseAction | BaseAction[]
 ) {
   compact(castArray(actions)).forEach(action => dispatch(action));
 }
 
 export function apiMiddleware({ dispatch }: Store<State>) {
-  return (next: Dispatch<State>) => async (action: BaseAction) => {
+  return (next: Dispatch<Action>) => async (action: BaseAction) => {
     if (!get('meta.api', action)) {
       return next(action);
     }

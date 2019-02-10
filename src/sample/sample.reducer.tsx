@@ -20,7 +20,10 @@ const sampleReducer = handleActions(
       state: SampleState,
       action: SetPostsAction
     ): SampleState => {
-      return set('posts', keyBy('id', get('payload.posts', action)), state);
+      const posts = get('payload.posts', action);
+      const normalizedPosts = keyBy('id', posts);
+
+      return set('posts', normalizedPosts, state);
     }
   },
   initialState

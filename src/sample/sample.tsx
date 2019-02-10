@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash/fp';
 import styled from '@emotion/styled';
@@ -8,14 +8,15 @@ import { isLoadingSelector } from 'selectors/network.selectors';
 
 import { State } from 'types/redux.types';
 import { SampleState } from 'sample/sample.reducer';
-import { MapStateToProps } from 'react-redux';
 import { PostsMap, Post } from 'sample/sample.types';
 
 import 'sample/sample-replace-reducer';
 
 /*
+ *************************************************************************************
  * This is done to avoid contaminating the original code with the sample reducer's code
  * Do not use this pattern normally
+ *************************************************************************************
  */
 
 interface StateWithSample extends State {

@@ -8,8 +8,8 @@ const networkSelector = (state: State): NetworkState => state.network;
 
 export const isLoadingSelector = createSelector(
   networkSelector,
-  (_state: State, networkLabel: string | Array<string>) => networkLabel,
-  (network: NetworkState, networkLabel: string | Array<string>) => {
+  (_state: State, networkLabel: string | string[]) => networkLabel,
+  (network: NetworkState, networkLabel: string | string[]) => {
     const labels = castArray(networkLabel);
 
     return some(currentLabel => network[currentLabel] > 0, labels);

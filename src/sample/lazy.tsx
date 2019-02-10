@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 const Lazy = () => <div>Lazy Loaded</div>;
 

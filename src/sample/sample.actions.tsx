@@ -17,6 +17,10 @@ export type PostsApiResponse = Post[];
 
 /*
  * Sample API action
+ * In the onSuccess callback we get the PostsAPIResponse type and then call the setPosts action
+ * This is done so we don't let the server response affect our actions.
+ * We need to map the server response into the data type that fits our application
+ * for example if we'll want to call setPosts outside this API action (with other data structure) or from a component.
  */
 export const fetchPosts = (): ApiAction<PostsApiResponse> => ({
   type: FETCH_POSTS,
@@ -27,15 +31,15 @@ export const fetchPosts = (): ApiAction<PostsApiResponse> => ({
     networkLabel: POSTS_LABEL,
     method: 'get',
     path: 'posts',
-    onSuccess: setPosts
+    onSuccess: (postsResponse: PostsApiResponse) => setPosts(postsResponse)
   }
 });
 
-export const setPosts = (postsResponse: PostsApiResponse): SetPostsAction => {
+export const setPosts = (posts: Post[]): SetPostsAction => {
   return {
     type: SET_POSTS,
     payload: {
-      posts: postsResponse
+      posts
     }
   };
 };

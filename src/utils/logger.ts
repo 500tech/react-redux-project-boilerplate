@@ -1,7 +1,9 @@
+import { IS_DEBUG_MODE } from 'constants/config';
+
 type logLevel = 'log' | 'info' | 'warn' | 'error';
 
 function print(level: logLevel, ...args: any[]) {
-  if (process.env.DEBUG) {
+  if (IS_DEBUG_MODE) {
     console[level](...args);
   }
 }

@@ -10,13 +10,15 @@ import {BASE_URL} from 'constants/config';
 import * as logger from 'utils/logger';
 
 export function dispatchActions(
-    dispatch: Dispatch<BaseAction>,
-    actions: ActionCreator<BaseAction> | ActionCreator<BaseAction>[],
-    response: any
+  dispatch: Dispatch<BaseAction>,
+  actionCreators: ActionCreator<BaseAction> | ActionCreator<BaseAction>[],
+  response: any
 ) {
-  compact(castArray(actions)).forEach((action: ActionCreator<BaseAction>) =>
-      dispatch(action(response.body || response.text))
-  );
+  compact(castArray(actionCreators)).forEach((actionCreator: ActionCreator<BaseAction>) => {
+    const action = actionCreator(response);
+
+    return action && dispatch(action);
+  });
 }
 
 export function apiMiddleware({dispatch}: Store<State>) {
@@ -55,7 +57,7 @@ export function apiMiddleware({dispatch}: Store<State>) {
       });
 
       if (onSuccess) {
-        dispatchActions(dispatch, onSuccess, response);
+        dispatchActions(dispatch, onSuccess, response.data || response.text);
       }
 
       dispatch(endNetwork(networkLabel));

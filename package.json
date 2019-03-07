@@ -7,7 +7,7 @@
     "npm": "~5.5.1"
   },
   "dependencies": {
-    "@500tech/react-scripts": "2.1.10",
+    "@500tech/react-scripts": "2.1.13",
     "@emotion/core": "10.0.6",
     "@emotion/styled": "10.0.6",
     "@types/enzyme": "3.1.15",

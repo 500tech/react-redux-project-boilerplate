@@ -1,1 +1,1 @@
-/// <reference types="react-scripts" />
+/// <reference types="@500tech/react-scripts" />

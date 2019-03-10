@@ -57,7 +57,7 @@ export function apiMiddleware({dispatch}: Store<State>) {
       });
 
       if (onSuccess) {
-        dispatchActions(dispatch, onSuccess, response.data || response.text);
+        dispatchActions(dispatch, onSuccess, response.body || response.text);
       }
 
       dispatch(endNetwork(networkLabel));

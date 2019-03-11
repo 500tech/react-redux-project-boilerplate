@@ -54,6 +54,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:staging": "env-path -p .env.staging react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "remove-typescript": "react-scripts remove-typescript",
@@ -92,6 +93,7 @@
     "@storybook/react": "^5.0.1",
     "add": "2.0.6",
     "babel-loader": "^8.0.5",
+    "env-path": "1.0.6",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.10.0",
     "husky": "1.3.1",

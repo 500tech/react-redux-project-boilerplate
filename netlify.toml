@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+
+# deploy preview
+[context.deploy-preview.environment]
+  command = "npm run build:staging"

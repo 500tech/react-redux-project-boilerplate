@@ -76,7 +76,7 @@
     "requirePragma": false
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,ts,tsx}": [
       "./node_modules/.bin/prettier --write",
       "git add"
     ]

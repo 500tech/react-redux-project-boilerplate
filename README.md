@@ -1,3 +1,8 @@
+## Requirements
+
+Git version must be `>= 2.13.2`
+Node version must be `>= 8`
+
 ## How to use
 
 ```
@@ -5,6 +10,8 @@ $ git clone git@bitbucket.org:500tech/react-redux-project-boilerplate.git
 $ git remote set-url origin <the-specific-repo-git-url>
 $ yarn start
 ```
+
+
 
 # 500Tech's React Redux Boilerplate
 

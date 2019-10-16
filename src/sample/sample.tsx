@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash/fp';
-import styled from '@emotion/styled';
+import styled from 'constants/themes.constants';
 
 import * as sampleActions from 'sample/sample.actions';
 import * as localizationActions from 'actions/localization.actions';
@@ -97,6 +97,7 @@ export const StyledPost = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 10px;
+  color: ${props => props.theme.secondaryColor};
 `;
 
 interface OwnProps {}

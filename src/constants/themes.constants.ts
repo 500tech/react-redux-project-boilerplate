@@ -1,5 +1,11 @@
+import styled, { CreateStyled } from '@emotion/styled';
+
 const theme = {
-  white: '#FFF'
+  primaryColor: '#FFF',
+  secondaryColor: '#333'
 };
 
-export default theme;
+export type Theme = typeof theme;
+
+export default styled as CreateStyled<Theme>;
+export { theme };

@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { noop } from 'lodash/fp';
 
 import { Sample, StyledPost } from 'sample/sample';
+import { LocaleTypes } from 'constants/locales';
 
 // mock the injection of the reducer into the application as we don't run
 // tests with any reference to the store
@@ -12,16 +13,19 @@ interface SetupParams {
   posts?: any;
   isLoading?: boolean;
   fetchPosts?: () => void;
+  setLocale?: (locale: LocaleTypes) => void;
 }
 
 const setup = ({
   posts = [],
   isLoading = false,
-  fetchPosts = noop
+  fetchPosts = noop,
+  setLocale = noop
 }: SetupParams = {}) => ({
   posts,
   isLoading,
-  fetchPosts
+  fetchPosts,
+  setLocale
 });
 
 describe('<Sample />', () => {

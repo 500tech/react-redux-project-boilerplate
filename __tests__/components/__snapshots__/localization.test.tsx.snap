@@ -6,7 +6,9 @@ exports[`<Localization /> should render 1`] = `
   locale="en-US"
   messages={
     Object {
-      "homepage.title": "Welcome to the 500Tech boilerplate",
+      "sample.common.loading": "Loading...",
+      "sample.homepage.description": "This is a sample component that uses a sample action + reducer, it fetches posts from a remote server and displays them",
+      "sample.homepage.title": "Welcome to the 500Tech boilerplate",
     }
   }
 >

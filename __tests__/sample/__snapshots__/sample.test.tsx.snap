@@ -2,14 +2,27 @@
 
 exports[`<Sample /> should render 1`] = `
 <StyledContainer>
-  <h1>
-    Title
-  </h1>
-  <h3>
-    To get started, search your project for // TODO
-    <br />
-    This is a sample component that uses a sample action + reducer, it fetches posts from a remote server and displays them
-  </h3>
+  <FormattedMessage
+    id="sample.homepage.title"
+    tagName="h1"
+  />
+  <FormattedMessage
+    id="sample.homepage.description"
+    tagName="h3"
+  />
+  <div>
+    Languages:
+    <button
+      onClick={[Function]}
+    >
+      English
+    </button>
+    <button
+      onClick={[Function]}
+    >
+      עברית
+    </button>
+  </div>
   <img
     alt="refresh"
     onClick={[Function]}
@@ -24,14 +37,27 @@ exports[`<Sample /> should render 1`] = `
 
 exports[`<Sample /> should render 3 posts 1`] = `
 <StyledContainer>
-  <h1>
-    Title
-  </h1>
-  <h3>
-    To get started, search your project for // TODO
-    <br />
-    This is a sample component that uses a sample action + reducer, it fetches posts from a remote server and displays them
-  </h3>
+  <FormattedMessage
+    id="sample.homepage.title"
+    tagName="h1"
+  />
+  <FormattedMessage
+    id="sample.homepage.description"
+    tagName="h3"
+  />
+  <div>
+    Languages:
+    <button
+      onClick={[Function]}
+    >
+      English
+    </button>
+    <button
+      onClick={[Function]}
+    >
+      עברית
+    </button>
+  </div>
   <img
     alt="refresh"
     onClick={[Function]}
@@ -77,14 +103,27 @@ exports[`<Sample /> should render 3 posts 1`] = `
 
 exports[`<Sample /> should render loading when component is in loading state 1`] = `
 <StyledContainer>
-  <h1>
-    Title
-  </h1>
-  <h3>
-    To get started, search your project for // TODO
-    <br />
-    This is a sample component that uses a sample action + reducer, it fetches posts from a remote server and displays them
-  </h3>
+  <FormattedMessage
+    id="sample.homepage.title"
+    tagName="h1"
+  />
+  <FormattedMessage
+    id="sample.homepage.description"
+    tagName="h3"
+  />
+  <div>
+    Languages:
+    <button
+      onClick={[Function]}
+    >
+      English
+    </button>
+    <button
+      onClick={[Function]}
+    >
+      עברית
+    </button>
+  </div>
   <img
     alt="refresh"
     onClick={[Function]}
@@ -93,8 +132,8 @@ exports[`<Sample /> should render loading when component is in loading state 1`]
   <h2>
     Posts from remote server
   </h2>
-  <div>
-    loading...
-  </div>
+  <FormattedMessage
+    id="sample.common.loading"
+  />
 </StyledContainer>
 `;

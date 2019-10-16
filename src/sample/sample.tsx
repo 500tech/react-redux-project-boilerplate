@@ -4,6 +4,7 @@ import { values } from 'lodash/fp';
 import styled from '@emotion/styled';
 
 import * as sampleActions from 'sample/sample.actions';
+import * as localizationActions from 'actions/localization.actions';
 import { isLoadingSelector } from 'selectors/network.selectors';
 
 import { State } from 'types/redux.types';
@@ -11,6 +12,8 @@ import { SampleState } from 'sample/sample.reducer';
 import { PostsMap, Post } from 'sample/sample.types';
 
 import 'sample/sample-replace-reducer';
+import { FormattedMessage } from 'react-intl';
+import { LocaleTypes } from 'constants/locales';
 
 /*
  *************************************************************************************
@@ -49,24 +52,28 @@ export class Sample extends React.PureComponent<Props> {
   };
 
   render() {
-    const { isLoading } = this.props;
+    const { isLoading, setLocale } = this.props;
 
     return (
       <StyledContainer>
-        <h1>Title</h1>
-        <h3>
-          To get started, search your project for // TODO
-          <br />
-          This is a sample component that uses a sample action + reducer, it
-          fetches posts from a remote server and displays them
-        </h3>
+        <FormattedMessage id="sample.homepage.title" tagName="h1" />
+        <FormattedMessage id="sample.homepage.description" tagName="h3" />
+        <div>
+          Languages:
+          <button onClick={() => setLocale('en-US')}>English</button>
+          <button onClick={() => setLocale('he-IL')}>עברית</button>
+        </div>
         <img
           src="https://www.materialui.co/materialIcons/navigation/refresh_grey_192x192.png"
           alt="refresh"
           onClick={this.refresh}
         />
         <h2>Posts from remote server</h2>
-        {isLoading ? <div>loading...</div> : this.renderPosts()}
+        {isLoading ? (
+          <FormattedMessage id="sample.common.loading" />
+        ) : (
+          this.renderPosts()
+        )}
       </StyledContainer>
     );
   }
@@ -101,6 +108,7 @@ interface StateProps {
 
 interface DispatchProps {
   fetchPosts: () => void;
+  setLocale: (locale: LocaleTypes) => void;
 }
 
 type Props = OwnProps & StateProps & DispatchProps;
@@ -111,7 +119,8 @@ const mapStateToProps = (state: StateWithSample): StateProps => ({
 });
 
 const mapDispatchToProps: DispatchProps = {
-  fetchPosts: sampleActions.fetchPosts
+  fetchPosts: sampleActions.fetchPosts,
+  setLocale: localizationActions.setLocale
 };
 
 export default connect(

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import forEach from 'lodash/forEach';
 import { connect } from 'react-redux';
-import { IntlProvider, addLocaleData, Locale } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 import moment, { LocaleSpecification } from 'moment';
 
 import store from 'store';
@@ -17,13 +17,25 @@ forEach(locales, (locale, key) =>
   )
 );
 
+if (!Intl.PluralRules) {
+  require('@formatjs/intl-pluralrules/polyfill');
+}
+
+// @ts-ignore
+if (!Intl.RelativeTimeFormat) {
+  require('@formatjs/intl-relativetimeformat/polyfill');
+}
+
 // Go over all of the available locales and register them
-forEach(locales, (_value, key: string) => {
-  addLocaleData(({
-    locale: key,
-    // Couldn't find any documentation about 'pluralRuleFunction', throws error if not present
-    pluralRuleFunction: () => {}
-  } as unknown) as Locale);
+forEach(locales, (_value, key: string = '') => {
+  const localeKey = key.split('-')[0];
+
+  if (!localeKey) {
+    return;
+  }
+
+  require(`@formatjs/intl-pluralrules/dist/locale-data/${localeKey}`);
+  require(`@formatjs/intl-relativetimeformat/dist/locale-data/${localeKey}`);
 });
 
 export const Localization = ({ locale, children }: Props) => (

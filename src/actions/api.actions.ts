@@ -5,7 +5,7 @@ export type HttpMethod =
   | 'post'
   | 'put'
   | 'delete'
-  | 'path'
+  | 'patch'
   | 'head'
   | 'options';
 

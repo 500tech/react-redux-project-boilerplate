@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash/fp';
-import styled from 'constants/themes.constants';
+import styled from '@emotion/styled';
 
 import * as sampleActions from 'sample/sample.actions';
 import * as localizationActions from 'actions/localization.actions';

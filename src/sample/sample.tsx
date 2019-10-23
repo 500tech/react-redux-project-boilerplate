@@ -14,6 +14,7 @@ import { PostsMap, Post } from 'sample/sample.types';
 import 'sample/sample-replace-reducer';
 import { FormattedMessage } from 'react-intl';
 import { LocaleTypes } from 'constants/locales';
+import { Theme } from 'constants/themes.constants';
 
 /*
  *************************************************************************************
@@ -97,7 +98,6 @@ export const StyledPost = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 10px;
-  color: ${props => props.theme.secondaryColor};
 `;
 
 interface OwnProps {}

@@ -14,7 +14,6 @@ import { PostsMap, Post } from 'sample/sample.types';
 import 'sample/sample-replace-reducer';
 import { FormattedMessage } from 'react-intl';
 import { LocaleTypes } from 'constants/locales';
-import { Theme } from 'constants/themes.constants';
 
 /*
  *************************************************************************************

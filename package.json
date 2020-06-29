@@ -79,7 +79,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "7.10.3",
     "@storybook/addon-actions": "5.3.19",
     "@storybook/addon-knobs": "5.3.19",
     "@storybook/addon-links": "5.3.19",
@@ -88,7 +87,6 @@
     "@storybook/preset-create-react-app": "3.1.2",
     "@storybook/preset-typescript": "3.0.0",
     "@storybook/react": "5.3.19",
-    "babel-loader": "8.1.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "husky": "4.2.5",
@@ -99,7 +97,6 @@
     "prettier": "2.0.5",
     "react-docgen-typescript-loader": "3.7.2",
     "storybook-addon-intl": "2.4.1",
-    "ts-loader": "7.0.5",
     "typescript": "3.9.5"
   },
   "browserslist": [

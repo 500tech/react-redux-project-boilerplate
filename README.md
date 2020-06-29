@@ -6,7 +6,7 @@ Node version must be `>= 8`
 ## How to use
 
 ```
-$ git clone git@bitbucket.org:500tech/react-redux-project-boilerplate.git
+$ git clone git@github.com:500tech/react-redux-project-boilerplate.git
 $ git remote set-url origin <the-specific-repo-git-url>
 $ yarn start
 ```

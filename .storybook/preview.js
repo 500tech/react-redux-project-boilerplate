@@ -1,4 +1,4 @@
-import { configure, addDecorator } from '@storybook/react';
+import { addDecorator } from '@storybook/react';
 
 // TODO: Remove me if no need for localization
 import { setIntlConfig, withIntl } from 'storybook-addon-intl';
@@ -14,11 +14,8 @@ forEach(locales, (locale, key) =>
 setIntlConfig({
   locales: Object.keys(locales),
   defaultLocale: 'en-US',
-  getMessages: locale => locales[locale].translations
+  getMessages: (locale) => locales[locale].translations
 });
 
 addDecorator(withIntl);
 // END LOCALIZATION TODO
-
-// automatically import all files ending in *.stories.js
-configure(require.context('../stories', true, /\.stories\.js$/), module);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { StyledPost } from '../../src/sample/sample';
+import { StyledPost } from 'sample/sample';
 import { FormattedMessage } from 'react-intl';
 
 const stories = storiesOf('Sample', module);

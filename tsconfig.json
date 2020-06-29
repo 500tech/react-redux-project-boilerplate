@@ -26,7 +26,8 @@
         "./__tests__/*"
       ]
     },
-    "baseUrl": "."
+    "baseUrl": ".",
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"

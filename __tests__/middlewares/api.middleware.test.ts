@@ -1,10 +1,18 @@
 import { createMiddlewareDispatcher } from '__tests__/helpers';
 import { FETCH_POSTS } from 'sample/sample.actions';
 import { endNetwork, startNetwork } from 'actions/network.actions';
-import {PostsApiResponse} from "../../src/sample/sample.actions";
+import { PostsApiResponse } from '../../src/sample/sample.actions';
+import apiUtils from 'utils/api.utils';
+import middleware from 'middlewares/api.middleware';
+
+jest.mock('utils/api.utils', () => {
+  return {
+    request: jest.fn()
+  };
+});
 
 describe('Middleware: API', () => {
-  let getSpy: jest.Mock, dispatchSpy: jest.Mock, middlewareDispatcher: Function, apiSpy: jest.Mock;
+  let getSpy: jest.Mock, dispatchSpy: jest.Mock, middlewareDispatcher: Function;
 
   beforeEach(() => {
     dispatchSpy = jest.fn();
@@ -12,21 +20,8 @@ describe('Middleware: API', () => {
   });
 
   describe('success response', () => {
-    apiSpy = jest.fn().mockResolvedValue({ body: 'data' });
-
     beforeAll(() => {
-      jest.doMock('utils/api.utils', function() {
-        return {
-          request: apiSpy
-        };
-      });
-
-      const middleware = require('middlewares/api.middleware').default;
       middlewareDispatcher = createMiddlewareDispatcher(middleware);
-    });
-
-    afterAll(() => {
-      jest.resetModules();
     });
 
     test('should do nothing if it is not an api action', () => {
@@ -37,6 +32,8 @@ describe('Middleware: API', () => {
     });
 
     test('should fetch data from server', async () => {
+      (apiUtils.request as jest.Mock).mockResolvedValue({ body: 'data' });
+
       const action = {
         type: 'FETCH_POSTS',
         payload: {
@@ -44,7 +41,10 @@ describe('Middleware: API', () => {
           method: 'GET',
           baseUrl: 'http://example.com',
           path: 'resource',
-          onSuccess: (posts: PostsApiResponse) => ({ type: 'DATA_ACTION', payload: posts })
+          onSuccess: (posts: PostsApiResponse) => ({
+            type: 'DATA_ACTION',
+            payload: posts
+          })
         },
         meta: {
           api: true
@@ -53,7 +53,7 @@ describe('Middleware: API', () => {
 
       await middlewareDispatcher(undefined, action, dispatchSpy);
 
-      expect(apiSpy).toHaveBeenCalledWith({
+      expect(apiUtils.request).toHaveBeenCalledWith({
         method: 'GET',
         url: 'http://example.com/resource',
         data: undefined,
@@ -65,7 +65,10 @@ describe('Middleware: API', () => {
       ]);
       expect(dispatchSpy.mock.calls[2]).toEqual([endNetwork('posts')]);
     });
+
     test('should use default baseURL', async () => {
+      (apiUtils.request as jest.Mock).mockResolvedValue({ body: 'data' });
+
       const action = {
         type: 'FETCH_POSTS',
         payload: {
@@ -80,7 +83,7 @@ describe('Middleware: API', () => {
 
       await middlewareDispatcher(undefined, action, dispatchSpy);
 
-      expect(apiSpy).toHaveBeenCalledWith({
+      expect(apiUtils.request).toHaveBeenCalledWith({
         method: 'GET',
         url: 'http://test.com/resource',
         data: undefined,
@@ -91,28 +94,12 @@ describe('Middleware: API', () => {
 
   describe('failure response', () => {
     beforeAll(() => {
-      jest.doMock('utils/api.utils', function() {
-        return {
-          request: jest.fn().mockRejectedValue({ body: 'data' })
-        };
-      });
-
-      const middleware = require('middlewares/api.middleware').default;
       middlewareDispatcher = createMiddlewareDispatcher(middleware);
     });
 
-    afterAll(() => {
-      jest.resetModules();
-    });
-
-    test('should do nothing if it is not an api action', () => {
-      const action = { type: 'SOME_ACTION' };
-      middlewareDispatcher(undefined, action, dispatchSpy);
-
-      expect(dispatchSpy).not.toHaveBeenCalled();
-    });
-
     test('should fetch data from server', async () => {
+      (apiUtils.request as jest.Mock).mockRejectedValue({ body: 'data' });
+
       const action = {
         type: 'FETCH_POSTS',
         payload: {

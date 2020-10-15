@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash/fp';
 import styled from '@emotion/styled';
@@ -13,7 +13,6 @@ import { PostsMap, Post } from 'sample/sample.types';
 
 import 'sample/sample-replace-reducer';
 import { FormattedMessage } from 'react-intl';
-import { LocaleTypes } from 'constants/locales';
 
 /*
  *************************************************************************************
@@ -29,55 +28,45 @@ interface StateWithSample extends State {
 /*
  * Sample component pulling data from server on mount
  */
-export class Sample extends React.PureComponent<Props> {
-  componentDidMount() {
-    this.refresh();
-  }
+export const Sample = ({ fetchPosts, isLoading, setLocale, posts }: Props) => {
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
-  refresh = () => {
-    this.props.fetchPosts();
-  };
-
-  renderPost = (post: Post) => (
+  const renderPost = (post: Post) => (
     <StyledPost key={post.id}>
       <h4>{post.title}</h4>
       <p>{post.body}</p>
     </StyledPost>
   );
 
-  renderPosts = () => {
-    const { posts } = this.props;
-
-    return <div>{values(posts).map(this.renderPost)}</div>;
+  const renderPosts = () => {
+    return <div>{values(posts).map(renderPost)}</div>;
   };
 
-  render() {
-    const { isLoading, setLocale } = this.props;
-
-    return (
-      <StyledContainer>
-        <FormattedMessage id="sample.homepage.title" tagName="h1" />
-        <FormattedMessage id="sample.homepage.description" tagName="h3" />
-        <div>
-          Languages:
-          <button onClick={() => setLocale('en-US')}>English</button>
-          <button onClick={() => setLocale('he-IL')}>עברית</button>
-        </div>
-        <img
-          src="https://www.materialui.co/materialIcons/navigation/refresh_grey_192x192.png"
-          alt="refresh"
-          onClick={this.refresh}
-        />
-        <h2>Posts from remote server</h2>
-        {isLoading ? (
-          <FormattedMessage id="sample.common.loading" />
-        ) : (
-          this.renderPosts()
-        )}
-      </StyledContainer>
-    );
-  }
-}
+  return (
+    <StyledContainer>
+      <FormattedMessage id="sample.homepage.title" tagName="h1" />
+      <FormattedMessage id="sample.homepage.description" tagName="h3" />
+      <div>
+        Languages:
+        <button onClick={() => setLocale('en-US')}>English</button>
+        <button onClick={() => setLocale('he-IL')}>עברית</button>
+      </div>
+      <img
+        src="https://www.materialui.co/materialIcons/navigation/refresh_grey_192x192.png"
+        alt="refresh"
+        onClick={() => fetchPosts()}
+      />
+      <h2>Posts from remote server</h2>
+      {isLoading ? (
+        <FormattedMessage id="sample.common.loading" />
+      ) : (
+        renderPosts()
+      )}
+    </StyledContainer>
+  );
+};
 
 const StyledContainer = styled.div`
   padding: 50px;
@@ -107,11 +96,11 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  fetchPosts: () => void;
-  setLocale: (locale: LocaleTypes) => void;
+  fetchPosts: typeof sampleActions.fetchPosts;
+  setLocale: typeof localizationActions.setLocale;
 }
 
-type Props = OwnProps & StateProps & DispatchProps;
+export type Props = OwnProps & StateProps & DispatchProps;
 
 const mapStateToProps = (state: StateWithSample): StateProps => ({
   posts: state.sample.posts,
@@ -123,7 +112,4 @@ const mapDispatchToProps: DispatchProps = {
   setLocale: localizationActions.setLocale
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Sample);
+export default connect(mapStateToProps, mapDispatchToProps)(Sample);

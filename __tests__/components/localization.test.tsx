@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { noop, indexOf } from 'lodash/fp';
 
 import locales from 'constants/locales';
 import moment from 'moment/moment';
@@ -10,7 +9,7 @@ const setup = ({ locale = 'en-US' } = {}) => ({
   locale
 });
 
-describe.only('<Localization />', () => {
+describe('<Localization />', () => {
   let momentSpy: any, storeSpy: any, Localization: any, subscribeCallback: any;
 
   beforeEach(() => {
@@ -20,7 +19,7 @@ describe.only('<Localization />', () => {
     };
 
     storeSpy = {
-      subscribe: jest.fn(callback => {
+      subscribe: jest.fn((callback) => {
         subscribeCallback = callback;
       }),
       getState: jest.fn(() => ({ localization: { locale: 'en-US' } }))

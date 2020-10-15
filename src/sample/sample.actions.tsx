@@ -1,6 +1,6 @@
 import { Post } from 'sample/sample.types';
 import { BaseAction } from 'types/base-redux.types';
-import { ApiAction } from '../actions/api.actions';
+import { ApiAction } from 'actions/api.actions';
 
 export const FETCH_POSTS = '[posts] Fetch Posts';
 export const SET_POSTS = '[posts] Set Posts';

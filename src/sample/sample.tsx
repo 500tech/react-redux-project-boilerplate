@@ -31,7 +31,7 @@ interface StateWithSample extends State {
 export const Sample = ({ fetchPosts, isLoading, setLocale, posts }: Props) => {
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   const renderPost = (post: Post) => (
     <StyledPost key={post.id}>

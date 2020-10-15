@@ -11,8 +11,6 @@ $ git remote set-url origin <the-specific-repo-git-url>
 $ yarn start
 ```
 
-
-
 # 500Tech's React Redux Boilerplate
 
 500Tech Boilerplate for new projects using React & Redux
@@ -20,6 +18,10 @@ $ yarn start
 # Opinionated
 
 This is an opinionated approach based on 500Tech's best practices
+
+By default we use emotion as our CSS-in-JS system.
+If you wish to use styled components instead create a .env file and add the following line:
+`USE_STYLED_COMPONENTS=true`
 
 # Contributing
 

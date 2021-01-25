@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@500tech/react-scripts": "5.0.0",
-    "@emotion/core": "10.0.28",
-    "@emotion/styled": "10.0.27",
+    "@emotion/react": "11.1.4",
+    "@emotion/styled": "11.0.0",
     "@formatjs/intl-pluralrules": "4.0.5",
     "@formatjs/intl-relativetimeformat": "8.0.3",
     "@types/enzyme": "3.10.8",
@@ -27,7 +27,6 @@
     "@types/redux-devtools": "3.0.47",
     "@types/superagent": "4.1.10",
     "@types/url-join": "4.0.0",
-    "emotion-theming": "10.0.27",
     "history": "5.0.0",
     "http-server": "0.12.3",
     "lodash": "4.17.20",

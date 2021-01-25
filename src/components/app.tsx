@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { Route } from 'react-router';
 import { Provider } from 'react-redux';

@@ -3,6 +3,8 @@ import forEach from 'lodash/forEach';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import moment, { LocaleSpecification } from 'moment';
+import { shouldPolyfill as shouldPolyfillRelativeTimeFormat } from '@formatjs/intl-relativetimeformat/should-polyfill';
+import { shouldPolyfill as shouldPolyfillPluralRules } from '@formatjs/intl-pluralrules/should-polyfill';
 
 import store from 'store';
 
@@ -17,12 +19,11 @@ forEach(locales, (locale, key) =>
   )
 );
 
-if (!Intl.PluralRules) {
+if (shouldPolyfillPluralRules()) {
   require('@formatjs/intl-pluralrules/polyfill');
 }
 
-// @ts-ignore
-if (!Intl.RelativeTimeFormat) {
+if (shouldPolyfillRelativeTimeFormat()) {
   require('@formatjs/intl-relativetimeformat/polyfill');
 }
 
@@ -34,15 +35,19 @@ forEach(locales, (_value, key: string = '') => {
     return;
   }
 
-  require(`@formatjs/intl-pluralrules/dist/locale-data/${localeKey}`);
-  require(`@formatjs/intl-relativetimeformat/dist/locale-data/${localeKey}`);
+  // @ts-ignore
+  if (Intl.PluralRules.polyfilled) {
+    require(`@formatjs/intl-pluralrules/locale-data/${localeKey}`);
+  }
+
+  // @ts-ignore
+  if (Intl.RelativeTimeFormat.polyfilled) {
+    require(`@formatjs/intl-relativetimeformat/locale-data/${localeKey}`);
+  }
 });
 
 export const Localization = ({ locale, children }: Props) => (
-  <IntlProvider
-    locale={locale}
-    key={locale}
-    messages={locales[locale].translations}>
+  <IntlProvider locale={locale} messages={locales[locale].translations}>
     {children}
   </IntlProvider>
 );

@@ -10,7 +10,8 @@ import { theme } from 'constants/themes.constants';
 import Localization from 'components/localization'; // TODO: remove if no localization
 import Layout from 'components/layout/layout';
 import Loading from 'sample/loading';
-import Sample from 'sample/sample'; // TODO: replace this with actual component
+import Sample from 'sample/sample';
+import { GlobalStyles } from 'components/global-styles'; // TODO: replace this with actual component
 
 const Lazy = lazy(() => import('sample/lazy'));
 
@@ -20,6 +21,7 @@ class App extends React.Component<{}> {
       <Provider store={store}>
         <Localization>
           <ThemeProvider theme={theme}>
+            <GlobalStyles />
             <BrowserRouter>
               <Layout>
                 <Suspense fallback={<Loading />}>

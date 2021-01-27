@@ -1,3 +1,11 @@
 {
-  "extends": "eslint-config-react-app"
+  "extends": "eslint-config-react-app",
+  "overrides": [
+    {
+      "files": ["*.stories.js"],
+      "rules": {
+        "import/no-anonymous-default-export": 0
+      }
+    }
+  ]
 }

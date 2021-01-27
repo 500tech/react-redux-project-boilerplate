@@ -17,5 +17,5 @@ setIntlConfig({
   getMessages: (locale) => locales[locale].translations
 });
 
-addDecorator(withIntl);
+export const decorators = [withIntl];
 // END LOCALIZATION TODO

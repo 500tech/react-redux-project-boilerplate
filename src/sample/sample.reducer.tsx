@@ -2,7 +2,6 @@ import { get, set, keyBy } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
 import { PostsMap } from 'sample/sample.types';
-import { SetPostsAction } from 'sample/sample.actions';
 
 import * as AT from 'sample/sample.actions';
 
@@ -18,7 +17,7 @@ const sampleReducer = handleActions(
   {
     [AT.SET_POSTS]: (
       state: SampleState,
-      action: SetPostsAction
+      action: ReturnType<typeof AT.setPosts>
     ): SampleState => {
       const posts = get('payload.posts', action);
       const normalizedPosts = keyBy('id', posts);

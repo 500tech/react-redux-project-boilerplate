@@ -4,6 +4,5 @@ export interface Post {
   title: string;
   body: string;
 }
-export interface PostsMap {
-  [key: number]: Post;
-}
+
+export type PostsMap = Record<string, Post>;

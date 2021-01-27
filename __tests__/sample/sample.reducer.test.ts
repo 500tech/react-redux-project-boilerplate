@@ -1,10 +1,12 @@
-import sampleReducer from 'sample/sample.reducer';
+import sampleReducer, { SampleState } from 'sample/sample.reducer';
 import { setPosts } from 'sample/sample.actions';
-import {Post} from "../../src/sample/sample.types";
+import { Post } from 'sample/sample.types';
 
 describe('Reducer: sample', () => {
   test('should save posts', () => {
-    const posts: Post[] = [{ id: 1, title: 'first post', body: 'first content', userId: 4 }];
+    const posts: Post[] = [
+      { id: 1, title: 'first post', body: 'first content', userId: 4 }
+    ];
     const action = setPosts(posts);
     const result = sampleReducer(undefined, action);
 
@@ -13,16 +15,19 @@ describe('Reducer: sample', () => {
   });
 
   test('should override posts when there are existing posts', () => {
-    const initialState = {
+    const initialState: SampleState = {
       posts: {
-        1: {
+        '1': {
           body: 'first content',
           id: 1,
-          title: 'first post'
+          title: 'first post',
+          userId: 1
         }
       }
     };
-    const posts: Post[] = [{ id: 2, title: 'second post', body: 'third content', userId: 5 }];
+    const posts: Post[] = [
+      { id: 2, title: 'second post', body: 'third content', userId: 5 }
+    ];
     const action = setPosts(posts);
     const result = sampleReducer(initialState, action);
 

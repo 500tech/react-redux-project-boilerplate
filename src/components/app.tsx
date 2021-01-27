@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { Route } from 'react-router';
@@ -15,28 +15,26 @@ import { GlobalStyles } from 'components/global-styles'; // TODO: replace this w
 
 const Lazy = lazy(() => import('sample/lazy'));
 
-class App extends React.Component<{}> {
-  render() {
-    return (
-      <Provider store={store}>
-        <Localization>
-          <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            <BrowserRouter>
-              <Layout>
-                <Suspense fallback={<Loading />}>
-                  <Switch>
-                    <Route exact path="/" name="sample" component={Sample} />
-                    <Route path="/lazy" name="lazy" component={Lazy} />
-                  </Switch>
-                </Suspense>
-              </Layout>
-            </BrowserRouter>
-          </ThemeProvider>
-        </Localization>
-      </Provider>
-    );
-  }
+function App() {
+  return (
+    <Provider store={store}>
+      <Localization>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <BrowserRouter>
+            <Layout>
+              <Suspense fallback={<Loading />}>
+                <Switch>
+                  <Route exact path="/" name="sample" component={Sample} />
+                  <Route path="/lazy" name="lazy" component={Lazy} />
+                </Switch>
+              </Suspense>
+            </Layout>
+          </BrowserRouter>
+        </ThemeProvider>
+      </Localization>
+    </Provider>
+  );
 }
 
 export default App;

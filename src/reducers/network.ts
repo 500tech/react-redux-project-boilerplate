@@ -1,18 +1,15 @@
 import { set } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
-import * as AT from 'actions/network.actions';
-import { NetworkAction } from 'actions/network.actions';
+import * as AT from 'actions/network';
 
-export type NetworkState = {
-  readonly [key: string]: number;
-};
+export type NetworkState = Record<string, number>;
 
 const initialState: NetworkState = {};
 
-const networkReducer = handleActions<NetworkState>(
+const network = handleActions<NetworkState>(
   {
-    [AT.START_NETWORK](state, action: NetworkAction) {
+    [AT.START_NETWORK](state, action: ReturnType<typeof AT.startNetwork>) {
       const { networkLabel } = action.payload;
 
       return set(
@@ -21,7 +18,7 @@ const networkReducer = handleActions<NetworkState>(
         state
       );
     },
-    [AT.END_NETWORK](state, action: NetworkAction) {
+    [AT.END_NETWORK](state, action: ReturnType<typeof AT.endNetwork>) {
       const { networkLabel } = action.payload;
 
       return set(
@@ -34,4 +31,4 @@ const networkReducer = handleActions<NetworkState>(
   initialState
 );
 
-export default networkReducer;
+export default network;

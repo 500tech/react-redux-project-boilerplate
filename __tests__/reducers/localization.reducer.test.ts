@@ -1,11 +1,11 @@
-import localizationReducer from 'reducers/localization.reducer';
-import { setLocale } from 'actions/localization.actions';
+import localization from 'reducers/localization';
+import { setLocale } from 'actions/localization';
 
 describe('Reducer: Localization', () => {
   test('should set locale', () => {
     const action = setLocale('en-US');
-    
-    const result = localizationReducer(undefined, action);
+
+    const result = localization(undefined, action);
 
     expect(result).toMatchSnapshot();
   });

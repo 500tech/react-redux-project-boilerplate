@@ -1,4 +1,4 @@
-import { Locale } from 'types/common.types';
+import { Locale } from 'types/common';
 import translations from './en-US.translations.json';
 
 const enUS: Locale = {

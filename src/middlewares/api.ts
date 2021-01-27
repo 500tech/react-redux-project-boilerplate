@@ -1,12 +1,12 @@
-import {get, castArray, compact} from 'lodash/fp';
+import { get, castArray, compact } from 'lodash/fp';
 import urljoin from 'url-join';
-import {Dispatch, Store, ActionCreator} from 'redux';
+import { Dispatch, Store, ActionCreator } from 'redux';
 
-import apiUtils from 'utils/api.utils';
-import {startNetwork, endNetwork} from 'actions/network.actions';
-import {BaseAction} from 'types/base-redux.types';
-import {State} from 'types/redux.types';
-import {BASE_URL} from 'constants/config';
+import apiUtils from 'utils/api';
+import { startNetwork, endNetwork } from 'actions/network';
+import { BaseAction } from 'types/base-redux';
+import { State } from 'types/redux';
+import { BASE_URL } from 'constants/config';
 import * as logger from 'utils/logger';
 
 export function dispatchActions(
@@ -14,20 +14,22 @@ export function dispatchActions(
   actionCreators: ActionCreator<BaseAction> | ActionCreator<BaseAction>[],
   response: any
 ) {
-  compact(castArray(actionCreators)).forEach((actionCreator: ActionCreator<BaseAction>) => {
-    const action = actionCreator(response);
+  compact(castArray(actionCreators)).forEach(
+    (actionCreator: ActionCreator<BaseAction>) => {
+      const action = actionCreator(response);
 
-    return action && dispatch(action);
-  });
+      return action && dispatch(action);
+    }
+  );
 }
 
-export function apiMiddleware({dispatch}: Store<State>) {
+export function apiMiddleware({ dispatch }: Store<State>) {
   return (next: Dispatch<BaseAction>) => async (action: BaseAction) => {
     if (!get('meta.api', action)) {
       return next(action);
     }
 
-    const {payload} = action;
+    const { payload } = action;
     const {
       path,
       baseUrl,

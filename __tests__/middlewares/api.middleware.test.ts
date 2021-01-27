@@ -1,11 +1,10 @@
 import { createMiddlewareDispatcher } from '__tests__/helpers';
-import { FETCH_POSTS } from 'sample/sample.actions';
-import { endNetwork, startNetwork } from 'actions/network.actions';
-import { PostsApiResponse } from '../../src/sample/sample.actions';
-import apiUtils from 'utils/api.utils';
-import middleware from 'middlewares/api.middleware';
+import { endNetwork, startNetwork } from 'actions/network';
+import { PostsApiResponse } from 'sample/sample.actions';
+import apiUtils from 'utils/api';
+import middleware from 'middlewares/api';
 
-jest.mock('utils/api.utils', () => {
+jest.mock('utils/api', () => {
   return {
     request: jest.fn()
   };

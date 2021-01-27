@@ -4,10 +4,10 @@ import { values } from 'lodash/fp';
 import styled from '@emotion/styled';
 
 import * as sampleActions from 'sample/sample.actions';
-import * as localizationActions from 'actions/localization.actions';
-import { isLoadingSelector } from 'selectors/network.selectors';
+import * as localizationActions from 'actions/localization';
+import { isLoadingSelector } from 'selectors/network';
 
-import { State } from 'types/redux.types';
+import { State } from 'types/redux';
 import { SampleState } from 'sample/sample.reducer';
 import { PostsMap, Post } from 'sample/sample.types';
 

@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import { some, castArray } from 'lodash/fp';
 
-import { State } from 'types/redux.types';
-import { NetworkState } from 'reducers/network.reducer';
+import { State } from 'types/redux';
+import { NetworkState } from 'reducers/network';
 
 const networkSelector = (state: State): NetworkState => state.network;
 
@@ -12,6 +12,6 @@ export const isLoadingSelector = createSelector(
   (network: NetworkState, networkLabel: string | string[]) => {
     const labels = castArray(networkLabel);
 
-    return some(currentLabel => network[currentLabel] > 0, labels);
+    return some((currentLabel) => network[currentLabel] > 0, labels);
   }
 );

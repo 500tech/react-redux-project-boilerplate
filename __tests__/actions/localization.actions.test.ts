@@ -1,4 +1,4 @@
-import { setLocale } from 'actions/localization.actions';
+import { setLocale } from 'actions/localization';
 
 describe('Actions: localization', () => {
   test('setLocale', () => {

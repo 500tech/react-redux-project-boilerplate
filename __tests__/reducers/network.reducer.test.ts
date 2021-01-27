@@ -1,10 +1,10 @@
-import networkReducer from 'reducers/network.reducer';
-import { endNetwork, startNetwork } from 'actions/network.actions';
+import network from 'reducers/network';
+import { endNetwork, startNetwork } from 'actions/network';
 
 describe('Reducer: Network', () => {
   test('startNetwork: should save pending request', () => {
     const action = startNetwork('posts');
-    const result = networkReducer(undefined, action);
+    const result = network(undefined, action);
 
     expect(result.posts).toEqual(1);
     expect(result).toMatchSnapshot();
@@ -15,7 +15,7 @@ describe('Reducer: Network', () => {
     const initialState = {
       posts: 1
     };
-    const result = networkReducer(initialState, action);
+    const result = network(initialState, action);
 
     expect(result.posts).toEqual(0);
     expect(result).toMatchSnapshot();
@@ -27,7 +27,7 @@ describe('Reducer: Network', () => {
       posts: 1
     };
 
-    const secondResult = networkReducer(initialState, action);
+    const secondResult = network(initialState, action);
     expect(secondResult.posts).toEqual(2);
   });
 
@@ -37,7 +37,7 @@ describe('Reducer: Network', () => {
       posts: 2
     };
 
-    const secondResult = networkReducer(initialState, action);
+    const secondResult = network(initialState, action);
     expect(secondResult.posts).toEqual(1);
   });
 
@@ -47,7 +47,7 @@ describe('Reducer: Network', () => {
       posts: 0
     };
 
-    const secondResult = networkReducer(initialState, action);
+    const secondResult = network(initialState, action);
     expect(secondResult.posts).toEqual(0);
   });
 });

@@ -6,7 +6,7 @@ import { shouldPolyfill as shouldPolyfillRelativeTimeFormat } from '@formatjs/in
 import { shouldPolyfill as shouldPolyfillPluralRules } from '@formatjs/intl-pluralrules/should-polyfill';
 
 import locales, { LocaleTypes } from 'constants/locales';
-import { State } from 'types/redux.types';
+import { State } from 'types/redux';
 
 if (shouldPolyfillPluralRules()) {
   require('@formatjs/intl-pluralrules/polyfill');

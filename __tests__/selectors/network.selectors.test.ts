@@ -1,4 +1,4 @@
-import { isLoadingSelector } from 'selectors/network.selectors';
+import { isLoadingSelector } from 'selectors/network';
 
 describe('Selectors: Network', () => {
   describe('isLoadingSelector', () => {

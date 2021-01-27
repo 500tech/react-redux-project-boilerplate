@@ -2,9 +2,9 @@
 import { get, set } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
-import { SetLocaleAction } from 'actions/localization.actions';
+import { setLocale } from 'actions/localization';
 
-import * as AT from 'actions/localization.actions';
+import * as AT from 'actions/localization';
 import { LocaleTypes } from 'constants/locales';
 
 export interface LocalizationState {
@@ -15,11 +15,11 @@ const initialState: LocalizationState = {
   locale: 'en-US'
 };
 
-const localizationReducer = handleActions<LocalizationState>(
+const localization = handleActions<LocalizationState>(
   {
     [AT.SET_LOCALE]: (
       state: LocalizationState,
-      action: SetLocaleAction
+      action: ReturnType<typeof setLocale>
     ): LocalizationState => {
       const locale = get('payload.locale', action);
 
@@ -29,4 +29,4 @@ const localizationReducer = handleActions<LocalizationState>(
   initialState
 );
 
-export default localizationReducer;
+export default localization;

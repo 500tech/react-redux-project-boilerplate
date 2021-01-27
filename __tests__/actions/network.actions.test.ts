@@ -1,4 +1,4 @@
-import { startNetwork, endNetwork } from 'actions/network.actions';
+import { startNetwork, endNetwork } from 'actions/network';
 
 describe('Actions: network', () => {
   test('startNetwork', () => {

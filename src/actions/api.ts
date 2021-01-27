@@ -1,4 +1,4 @@
-import { BaseAction } from 'types/base-redux.types';
+import { BaseAction } from 'types/base-redux';
 
 export type HttpMethod =
   | 'get'

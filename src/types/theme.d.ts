@@ -1,5 +1,7 @@
 import '@emotion/react';
-import { Theme as AppTheme } from '../constants/themes.constants';
+import { theme } from '../constants/themes.constants';
+
+type AppTheme = typeof theme;
 
 declare module '@emotion/react' {
   export interface Theme extends AppTheme {}

@@ -27,7 +27,7 @@
     "@types/redux-devtools": "3.0.47",
     "@types/superagent": "4.1.10",
     "@types/url-join": "4.0.0",
-    "history": "5.0.0",
+    "history": "4.10.1",
     "http-server": "0.12.3",
     "lodash": "4.17.20",
     "react": "16.13.1",

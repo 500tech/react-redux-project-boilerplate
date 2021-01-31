@@ -1,5 +1,4 @@
-import React from 'react';
-import forEach from 'lodash/forEach';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { shouldPolyfill as shouldPolyfillRelativeTimeFormat } from '@formatjs/intl-relativetimeformat/should-polyfill';
@@ -16,40 +15,46 @@ if (shouldPolyfillRelativeTimeFormat()) {
   require('@formatjs/intl-relativetimeformat/polyfill');
 }
 
-// Go over all of the available locales and register them
-forEach(locales, (_value, key: string = '') => {
-  const localeKey = key.split('-')[0];
+export const Localization: React.FC<Props> = ({ locale, children }) => {
+  useEffect(
+    function loadLocaleData() {
+      const [localeKey] = locale.split('-');
 
-  if (!localeKey) {
-    return;
-  }
+      if (!localeKey) {
+        return;
+      }
 
-  // @ts-ignore
-  if (Intl.PluralRules.polyfilled) {
-    require(`@formatjs/intl-pluralrules/locale-data/${localeKey}`);
-  }
+      // polyfilled is a property that only exists on the polyfill version of this Intl API.
+      // We ignore it's type error as it doesn't exist on the official type and we do not want to extend the interface with
+      // a non standard property
+      // @ts-ignore
+      if (Intl.PluralRules.polyfilled) {
+        require(`@formatjs/intl-pluralrules/locale-data/${localeKey}`);
+      }
 
-  // @ts-ignore
-  if (Intl.RelativeTimeFormat.polyfilled) {
-    require(`@formatjs/intl-relativetimeformat/locale-data/${localeKey}`);
-  }
-});
+      // polyfilled is a property that only exists on the polyfill version of this Intl API.
+      // We ignore it's type error as it doesn't exist on the official type and we do not want to extend the interface with
+      // a non standard property
+      // @ts-ignore
+      if (Intl.RelativeTimeFormat.polyfilled) {
+        require(`@formatjs/intl-relativetimeformat/locale-data/${localeKey}`);
+      }
+    },
+    [locale]
+  );
 
-export const Localization: React.FC<Props> = ({ locale, children }) => (
-  <IntlProvider locale={locale} messages={locales[locale].translations}>
-    {children}
-  </IntlProvider>
-);
-
-interface OwnProps {
-  children: React.ReactNode;
-}
+  return (
+    <IntlProvider locale={locale} messages={locales[locale].translations}>
+      {children}
+    </IntlProvider>
+  );
+};
 
 interface StateProps {
   locale: LocaleTypes;
 }
 
-export type Props = StateProps & OwnProps;
+export type Props = StateProps;
 
 const mapStateToProps = (state: State): StateProps => ({
   locale: state.localization.locale

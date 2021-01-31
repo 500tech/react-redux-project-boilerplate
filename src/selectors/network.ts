@@ -2,16 +2,14 @@ import { createSelector } from 'reselect';
 import { some, castArray } from 'lodash/fp';
 
 import { State } from 'types/redux';
-import { NetworkState } from 'reducers/network';
 
-const networkSelector = (state: State): NetworkState => state.network;
+// TODO: make into selector factory
+export const makeIsLoadingSelector = (networkLabel: string | string[]) =>
+  createSelector(
+    (state: State) => state.network,
+    (network) => {
+      const labels = castArray(networkLabel);
 
-export const isLoadingSelector = createSelector(
-  networkSelector,
-  (_state: State, networkLabel: string | string[]) => networkLabel,
-  (network: NetworkState, networkLabel: string | string[]) => {
-    const labels = castArray(networkLabel);
-
-    return some((currentLabel) => network[currentLabel] > 0, labels);
-  }
-);
+      return some((currentLabel) => network[currentLabel] > 0, labels);
+    }
+  );

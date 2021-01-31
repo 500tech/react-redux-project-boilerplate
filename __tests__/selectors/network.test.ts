@@ -1,4 +1,4 @@
-import { isLoadingSelector } from 'selectors/network';
+import { makeIsLoadingSelector } from 'selectors/network';
 
 describe('Selectors: Network', () => {
   describe('isLoadingSelector', () => {
@@ -9,8 +9,11 @@ describe('Selectors: Network', () => {
         }
       };
 
+      const isLoadingSelector = makeIsLoadingSelector('posts');
+
+      // ignored as we don't want to include the entire state in our test
       // @ts-ignore
-      const result = isLoadingSelector(state, 'posts');
+      const result = isLoadingSelector(state);
 
       expect(result).toBe(true);
     });
@@ -22,8 +25,11 @@ describe('Selectors: Network', () => {
         }
       };
 
+      const isLoadingSelector = makeIsLoadingSelector('posts');
+
+      // ignored as we don't want to include the entire state in our test
       // @ts-ignore
-      const result = isLoadingSelector(state, 'posts');
+      const result = isLoadingSelector(state);
 
       expect(result).toBe(false);
     });

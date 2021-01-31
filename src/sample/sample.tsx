@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 
 import * as sampleActions from 'sample/sample.actions';
 import * as localizationActions from 'actions/localization';
-import { isLoadingSelector } from 'selectors/network';
+import { makeIsLoadingSelector } from 'selectors/network';
 
 import { State } from 'types/redux';
 import { SampleState } from 'sample/sample.reducer';
@@ -98,14 +98,22 @@ export type Props = OwnProps & StateProps & DispatchProps;
 
 type LazyLoadedSampleState = { sample: SampleState };
 
-const mapStateToProps = (state: State & LazyLoadedSampleState): StateProps => ({
-  posts: state.sample.posts,
-  isLoading: isLoadingSelector(state, sampleActions.POSTS_LABEL)
-});
+const makeStateToProps = () => {
+  const isLoadingSelector = makeIsLoadingSelector(sampleActions.POSTS_LABEL);
+
+  // If this component didn't need the loading state we could simply write a regular mapStateToProps
+  // function as listed below
+  return function mapStateToProps(state: State & LazyLoadedSampleState) {
+    return {
+      posts: state.sample.posts,
+      isLoading: isLoadingSelector(state)
+    };
+  };
+};
 
 const mapDispatchToProps: DispatchProps = {
   fetchPosts: sampleActions.fetchPosts,
   setLocale: localizationActions.setLocale
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sample);
+export default connect(makeStateToProps(), mapDispatchToProps)(Sample);

@@ -1,5 +1,5 @@
 import { fetchPosts, setPosts } from 'sample/sample.actions';
-import {Post} from "../../src/sample/sample.types";
+import { Post } from '../../src/sample/sample.types';
 
 describe('Actions: sample', () => {
   const posts: Post[] = [{ id: 1, title: 'test', body: 'test', userId: 1 }];
@@ -12,7 +12,6 @@ describe('Actions: sample', () => {
 
   test('fetchPosts: should fire setPosts with payload', () => {
     const action = fetchPosts();
-
 
     if (action.payload.onSuccess && !Array.isArray(action.payload.onSuccess)) {
       const nextAction = action.payload.onSuccess(posts);

@@ -6,8 +6,7 @@ import apiUtils from 'utils/api';
 import { startNetwork, endNetwork } from 'actions/network';
 import { BaseAction } from 'types/base-redux';
 import { State } from 'types/redux';
-import { BASE_URL } from 'constants/config';
-import * as logger from 'utils/logger';
+import { BASE_URL, IS_DEBUG_MODE } from 'constants/config';
 
 export function dispatchActions(
   dispatch: Dispatch<BaseAction>,
@@ -39,7 +38,7 @@ export function apiMiddleware({ dispatch }: Store<State>) {
       data,
       method
     } = payload;
-    const headers: { [key: string]: string } = {};
+    const headers: Record<string, string> = {};
     const requestUrl = urljoin(baseUrl || BASE_URL, path);
 
     // TODO: if using token authentication
@@ -61,10 +60,10 @@ export function apiMiddleware({ dispatch }: Store<State>) {
       if (onSuccess) {
         dispatchActions(dispatch, onSuccess, response.body || response.text);
       }
-
-      dispatch(endNetwork(networkLabel));
     } catch (error) {
-      logger.error('API error', error, action);
+      if (IS_DEBUG_MODE) {
+        console.error('API Error', error, action);
+      }
 
       if (get('response.status', error) === 401) {
         // TODO: handle 401
@@ -73,6 +72,7 @@ export function apiMiddleware({ dispatch }: Store<State>) {
       if (onError) {
         dispatchActions(dispatch, onError, error);
       }
+    } finally {
       dispatch(endNetwork(networkLabel));
     }
   };

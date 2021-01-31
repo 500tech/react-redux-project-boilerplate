@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-const Layout: React.FC<{}> = ({ children }) => (
+const Layout: React.FC = ({ children }) => (
   <StyledLayout>
     <header>
       <Link to="/">Home</Link>

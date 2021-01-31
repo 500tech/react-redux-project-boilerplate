@@ -12,5 +12,10 @@ if (process.env.NODE_ENV === 'development') {
   Mimic.setAppName('MyApp');
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 // registerServiceWorker();

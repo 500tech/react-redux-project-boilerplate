@@ -35,7 +35,7 @@ export const fetchPosts = (): ApiAction<PostsApiResponse> => ({
   }
 });
 
-export const setPosts = (posts: Post[]) => {
+export const setPosts = (posts: Array<Post>) => {
   return {
     type: SET_POSTS,
     payload: {

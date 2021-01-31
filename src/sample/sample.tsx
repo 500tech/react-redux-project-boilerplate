@@ -9,26 +9,20 @@ import { isLoadingSelector } from 'selectors/network';
 
 import { State } from 'types/redux';
 import { SampleState } from 'sample/sample.reducer';
-import { PostsMap, Post } from 'sample/sample.types';
+import { Post } from 'sample/sample.types';
 
 import 'sample/sample-replace-reducer';
 import { FormattedMessage } from 'react-intl';
 
 /*
- *************************************************************************************
- * This is done to avoid contaminating the original code with the sample reducer's code
- * Do not use this pattern normally
- *************************************************************************************
- */
-
-interface StateWithSample extends State {
-  sample: SampleState;
-}
-
-/*
  * Sample component pulling data from server on mount
  */
-export const Sample = ({ fetchPosts, isLoading, setLocale, posts }: Props) => {
+export const Sample: React.FC<Props> = ({
+  fetchPosts,
+  isLoading,
+  setLocale,
+  posts
+}) => {
   useEffect(() => {
     fetchPosts();
   }, [fetchPosts]);
@@ -91,7 +85,7 @@ export const StyledPost = styled.div`
 interface OwnProps {}
 
 interface StateProps {
-  posts: PostsMap;
+  posts: SampleState['posts'];
   isLoading: boolean;
 }
 
@@ -102,7 +96,9 @@ interface DispatchProps {
 
 export type Props = OwnProps & StateProps & DispatchProps;
 
-const mapStateToProps = (state: StateWithSample): StateProps => ({
+type LazyLoadedSampleState = { sample: SampleState };
+
+const mapStateToProps = (state: State & LazyLoadedSampleState): StateProps => ({
   posts: state.sample.posts,
   isLoading: isLoadingSelector(state, sampleActions.POSTS_LABEL)
 });

@@ -1,7 +1,8 @@
 declare module 'redux-actions' {
-  type ActionHandler<S> = (state: S, action: any) => S;
-  function handleActions<S>(
-    map: { [key: string]: ActionHandler<S> },
-    initialState: S
-  );
+  type ActionHandler<State> = (state: State, action: any) => State;
+
+  function handleActions<State>(
+    map: { [key: string]: ActionHandler<State> },
+    initialState: State
+  ): ActionHandler<State>;
 }

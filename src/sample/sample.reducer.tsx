@@ -1,12 +1,11 @@
 import { get, set, keyBy } from 'lodash/fp';
 import { handleActions } from 'redux-actions';
 
-import { PostsMap } from 'sample/sample.types';
-
 import * as AT from 'sample/sample.actions';
+import { Post } from 'sample/sample.types';
 
 export type SampleState = {
-  posts: PostsMap;
+  posts: Record<string, Post>;
 };
 
 const initialState: SampleState = {
